@@ -10,11 +10,31 @@ using System.Windows.Forms;
 
 namespace PetManager
 {
-    public partial class Registros: Form
+    public partial class Registros : Form
     {
         public Registros()
         {
             InitializeComponent();
+        }
+
+        private void groupBox1_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void boxFiltroRaca_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void boxFiltroPorte_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void boxFiltroTipo_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
