@@ -126,6 +126,7 @@
             ClientSize = new Size(1243, 543);
             Controls.Add(panel1);
             Controls.Add(TxtPesquisa);
+>>>>>>> 7b27e75a654fe2c23e51b04de728b637d70283b7
             Controls.Add(groupBox1);
             Name = "Registros";
             Text = "Registros";
