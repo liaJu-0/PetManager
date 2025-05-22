@@ -48,14 +48,12 @@
             txtTamPelo = new TextBox();
             dateNscto = new DateTimePicker();
             comboBoxCastrado = new ComboBox();
-            txtTamanho = new TextBox();
-            txtPeso = new TextBox();
             txtVacinas = new TextBox();
             txtObs = new TextBox();
             dateEntrada = new DateTimePicker();
             txtResumo = new TextBox();
             btnUpload = new Button();
-            btnSalvar_Click = new Button();
+            btnSalvar = new Button();
             label4 = new Label();
             label5 = new Label();
             label6 = new Label();
@@ -69,6 +67,8 @@
             label14 = new Label();
             label15 = new Label();
             label16 = new Label();
+            txtTamanho = new ComboBox();
+            txtPeso = new TextBox();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
@@ -166,20 +166,6 @@
             comboBoxCastrado.Size = new Size(90, 28);
             comboBoxCastrado.TabIndex = 11;
             // 
-            // txtTamanho
-            // 
-            txtTamanho.Location = new Point(99, 465);
-            txtTamanho.Name = "txtTamanho";
-            txtTamanho.Size = new Size(90, 27);
-            txtTamanho.TabIndex = 13;
-            // 
-            // txtPeso
-            // 
-            txtPeso.Location = new Point(99, 395);
-            txtPeso.Name = "txtPeso";
-            txtPeso.Size = new Size(90, 27);
-            txtPeso.TabIndex = 12;
-            // 
             // txtVacinas
             // 
             txtVacinas.Location = new Point(223, 327);
@@ -220,15 +206,16 @@
             btnUpload.Text = "Enviar foto";
             btnUpload.UseVisualStyleBackColor = true;
             // 
-            // btnSalvar_Click
-            // 
-            btnSalvar_Click.Location = new Point(751, 468);
-            btnSalvar_Click.Name = "btnSalvar_Click";
-            btnSalvar_Click.Size = new Size(132, 24);
-            btnSalvar_Click.TabIndex = 19;
-            btnSalvar_Click.Text = "Salvar";
-            btnSalvar_Click.UseVisualStyleBackColor = true;
-            btnSalvar_Click.Click += btnSalvar_Click_Click;
+            // btnSalvar
+            //
+            btnSalvar = new Button();
+            btnSalvar.Location = new Point(751, 468);
+            btnSalvar.Name = "btnSalvar";
+            btnSalvar.Size = new Size(132, 24);
+            btnSalvar.TabIndex = 19;
+            btnSalvar.Text = "Salvar";
+            btnSalvar.UseVisualStyleBackColor = true;
+            btnSalvar.Click += btnSalvar_Click;
             // 
             // label4
             // 
@@ -315,7 +302,7 @@
             // 
             label12.AutoSize = true;
             label12.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label12.Location = new Point(99, 442);
+            label12.Location = new Point(99, 438);
             label12.Name = "label12";
             label12.Size = new Size(47, 20);
             label12.TabIndex = 28;
@@ -361,12 +348,30 @@
             label16.TabIndex = 32;
             label16.Text = "Resumo";
             // 
+            // txtTamanho
+            // 
+            txtTamanho.FormattingEnabled = true;
+            txtTamanho.Items.AddRange(new object[] { "Pequeno", "Médio", "Grande" });
+            txtTamanho.Location = new Point(99, 464);
+            txtTamanho.Name = "txtTamanho";
+            txtTamanho.Size = new Size(90, 28);
+            txtTamanho.TabIndex = 33;
+            txtTamanho.SelectedIndexChanged += txtTamanho_SelectedIndexChanged;
+            // 
+            // txtPeso
+            // 
+            txtPeso.Location = new Point(99, 395);
+            txtPeso.Name = "txtPeso";
+            txtPeso.Size = new Size(90, 27);
+            txtPeso.TabIndex = 12;
+            // 
             // Cadastro
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.DarkSeaGreen;
             ClientSize = new Size(1242, 544);
+            Controls.Add(txtTamanho);
             Controls.Add(label16);
             Controls.Add(label15);
             Controls.Add(label14);
@@ -380,13 +385,12 @@
             Controls.Add(label6);
             Controls.Add(label5);
             Controls.Add(label4);
-            Controls.Add(btnSalvar_Click);
+            Controls.Add(btnSalvar);
             Controls.Add(btnUpload);
             Controls.Add(txtResumo);
             Controls.Add(dateEntrada);
             Controls.Add(txtObs);
             Controls.Add(txtVacinas);
-            Controls.Add(txtTamanho);
             Controls.Add(txtPeso);
             Controls.Add(comboBoxCastrado);
             Controls.Add(dateNscto);
@@ -420,14 +424,12 @@
         private TextBox txtTamPelo;
         private DateTimePicker dateNscto;
         private ComboBox comboBoxCastrado;
-        private TextBox txtTamanho;
-        private TextBox txtPeso;
         private TextBox txtVacinas;
         private TextBox txtObs;
         private DateTimePicker dateEntrada;
         private TextBox txtResumo;
         private Button btnUpload;
-        private Button btnSalvar_Click;
+        private Button btnSalvar;
         private Label label4;
         private Label label5;
         private Label label6;
@@ -441,5 +443,7 @@
         private Label label14;
         private Label label15;
         private Label label16;
+        private ComboBox txtTamanho;
+        private TextBox txtPeso;
     }
 }

@@ -39,10 +39,43 @@ namespace PetManager
 
         }
 
-        private void btnSalvar_Click_Click(object sender, EventArgs e)
+        private void btnSalvar_Click(object sender, EventArgs e)
         {
+            string tipo = txtTipo.Text;
+            string nome = txtNome.Text;
+            string raca = txtRaca.Text;
+            string nascimento = dateNscto.Value.ToShortDateString();
+            string corPelagem = txtCorPelo.Text;
+            string tamPelagem = txtTamPelo.Text;
+            string castrado = comboBoxCastrado.Text;
+            string peso = txtPeso.Text;
+            string porte = txtTamanho.Text;
+            string vacinas = txtVacinas.Text;
+            string observacoes = txtObs.Text;
+            string dataEntrada = dateEntrada.Value.ToShortDateString();
+            string resumo = txtResumo.Text;
+
+            string linha = $"{tipo};{nome};{raca};{nascimento};{corPelagem};{tamPelagem};{castrado};{peso};{porte};{vacinas};{observacoes};{dataEntrada};{resumo}";
+
+            string caminho = "registros.csv";
+
+            try
+            {
+                if (!File.Exists(caminho))
+                {
+                    File.AppendAllText(caminho, "Tipo;Nome;Raça;Nascimento;Cor;Pelagem;Castrado;Peso;Porte;Vacinas;Observações;DataEntrada;Resumo\n");
+                }
+
+                File.AppendAllText(caminho, linha + "\n");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Erro ao salvar: " + ex.Message);
+                return;
+            }
+            
             DialogResult resultado = MessageBox.Show(
-                "Cadastro realizado com sucesso!\n\nDeseja visualizar os registros?",
+                "Cadastro salvo com sucesso!\n\nDeseja visualizar os registros?",
                 "Confirmação",
                 MessageBoxButtons.YesNo,
                 MessageBoxIcon.Information
@@ -52,17 +85,23 @@ namespace PetManager
             {
                 Registros telaRegistros = new Registros();
                 telaRegistros.Show();
-                this.Close();
             }
             else
             {
                 TelaInicial telaInicial = new TelaInicial();
                 telaInicial.Show();
-                this.Close();
             }
+
+            this.Close();
         }
 
+
         private void Cadastro_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtTamanho_SelectedIndexChanged(object sender, EventArgs e)
         {
 
         }
