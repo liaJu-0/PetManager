@@ -55,7 +55,7 @@
             dateEntrada = new DateTimePicker();
             txtResumo = new TextBox();
             btnUpload = new Button();
-            btnSalvar = new Button();
+            btnSalvar_Click = new Button();
             label4 = new Label();
             label5 = new Label();
             label6 = new Label();
@@ -220,14 +220,15 @@
             btnUpload.Text = "Enviar foto";
             btnUpload.UseVisualStyleBackColor = true;
             // 
-            // btnSalvar
+            // btnSalvar_Click
             // 
-            btnSalvar.Location = new Point(751, 458);
-            btnSalvar.Name = "btnSalvar";
-            btnSalvar.Size = new Size(132, 34);
-            btnSalvar.TabIndex = 19;
-            btnSalvar.Text = "Salvar";
-            btnSalvar.UseVisualStyleBackColor = true;
+            btnSalvar_Click.Location = new Point(751, 468);
+            btnSalvar_Click.Name = "btnSalvar_Click";
+            btnSalvar_Click.Size = new Size(132, 24);
+            btnSalvar_Click.TabIndex = 19;
+            btnSalvar_Click.Text = "Salvar";
+            btnSalvar_Click.UseVisualStyleBackColor = true;
+            btnSalvar_Click.Click += btnSalvar_Click_Click;
             // 
             // label4
             // 
@@ -379,7 +380,7 @@
             Controls.Add(label6);
             Controls.Add(label5);
             Controls.Add(label4);
-            Controls.Add(btnSalvar);
+            Controls.Add(btnSalvar_Click);
             Controls.Add(btnUpload);
             Controls.Add(txtResumo);
             Controls.Add(dateEntrada);
@@ -400,6 +401,7 @@
             Controls.Add(pictureBox1);
             Name = "Cadastro";
             Text = "Cadastro";
+            Load += Cadastro_Load;
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);
             PerformLayout();
@@ -425,7 +427,7 @@
         private DateTimePicker dateEntrada;
         private TextBox txtResumo;
         private Button btnUpload;
-        private Button btnSalvar;
+        private Button btnSalvar_Click;
         private Label label4;
         private Label label5;
         private Label label6;

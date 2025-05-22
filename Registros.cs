@@ -35,7 +35,7 @@ namespace PetManager
 
         private void TxtPesquisa_KeyDown(object sender, KeyEventArgs e)
         {
-            
+
         }
 
         private void ListPesquisa_SelectedIndexChanged(object sender, EventArgs e)
@@ -47,11 +47,20 @@ namespace PetManager
         {
 
         }
-    
+
         private void boxFiltroRaca_SelectedIndexChanged(object sender, EventArgs e)
         {
 
         }
 
+        private void btnVoltar_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Registros_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

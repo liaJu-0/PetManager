@@ -35,6 +35,7 @@
             TxtPesquisa = new TextBox();
             ListPesquisa = new TextBox();
             panel1 = new Panel();
+            btnVoltar = new Button();
             groupBox1.SuspendLayout();
             panel1.SuspendLayout();
             SuspendLayout();
@@ -118,17 +119,29 @@
             panel1.Size = new Size(567, 40);
             panel1.TabIndex = 3;
             // 
+            // btnVoltar
+            // 
+            btnVoltar.Location = new Point(721, 433);
+            btnVoltar.Name = "btnVoltar";
+            btnVoltar.Size = new Size(87, 28);
+            btnVoltar.TabIndex = 4;
+            btnVoltar.Text = "Voltar";
+            btnVoltar.UseVisualStyleBackColor = true;
+            btnVoltar.Click += btnVoltar_Click;
+            // 
             // Registros
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.DarkSeaGreen;
             ClientSize = new Size(1243, 543);
+            Controls.Add(btnVoltar);
             Controls.Add(panel1);
             Controls.Add(TxtPesquisa);
             Controls.Add(groupBox1);
             Name = "Registros";
             Text = "Registros";
+            Load += Registros_Load;
             groupBox1.ResumeLayout(false);
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
@@ -145,5 +158,6 @@
         private TextBox TxtPesquisa;
         private TextBox ListPesquisa;
         private Panel panel1;
+        private Button btnVoltar;
     }
 }
