@@ -37,6 +37,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Cadastro));
             pictureBox1 = new PictureBox();
             label1 = new Label();
             label2 = new Label();
@@ -69,7 +70,9 @@
             label16 = new Label();
             txtTamanho = new ComboBox();
             txtPeso = new TextBox();
+            pictureBox2 = new PictureBox();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             SuspendLayout();
             // 
             // pictureBox1
@@ -109,7 +112,7 @@
             label3.AutoSize = true;
             label3.Font = new Font("Tahoma", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label3.ForeColor = Color.Green;
-            label3.Location = new Point(587, 70);
+            label3.Location = new Point(587, 79);
             label3.Name = "label3";
             label3.Size = new Size(103, 28);
             label3.TabIndex = 3;
@@ -365,12 +368,28 @@
             txtPeso.Size = new Size(90, 27);
             txtPeso.TabIndex = 12;
             // 
+            // pictureBox2
+            // 
+            pictureBox2.ErrorImage = null;
+            pictureBox2.Image = (Image)resources.GetObject("pictureBox2.Image");
+            pictureBox2.InitialImage = (Image)resources.GetObject("pictureBox2.InitialImage");
+            pictureBox2.Location = new Point(958, 79);
+            pictureBox2.Name = "pictureBox2";
+            pictureBox2.Size = new Size(37, 35);
+            pictureBox2.SizeMode = PictureBoxSizeMode.StretchImage;
+            pictureBox2.TabIndex = 34;
+            pictureBox2.TabStop = false;
+            pictureBox2.Click += pictureBox2_Click;
+            pictureBox2.MouseEnter += pictureBox2_MouseEnter;
+            pictureBox2.MouseLeave += pictureBox2_MouseLeave;
+            // 
             // Cadastro
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.DarkSeaGreen;
             ClientSize = new Size(1242, 544);
+            Controls.Add(pictureBox2);
             Controls.Add(txtTamanho);
             Controls.Add(label16);
             Controls.Add(label15);
@@ -403,10 +422,12 @@
             Controls.Add(label2);
             Controls.Add(label1);
             Controls.Add(pictureBox1);
+            ForeColor = Color.Black;
             Name = "Cadastro";
             Text = "Cadastro";
             Load += Cadastro_Load;
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -445,5 +466,6 @@
         private Label label16;
         private ComboBox txtTamanho;
         private TextBox txtPeso;
+        private PictureBox pictureBox2;
     }
 }

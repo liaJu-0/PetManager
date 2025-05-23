@@ -141,6 +141,7 @@
             Controls.Add(groupBox1);
             Name = "Registros";
             Text = "Registros";
+            WindowState = FormWindowState.Maximized;
             Load += Registros_Load;
             groupBox1.ResumeLayout(false);
             panel1.ResumeLayout(false);

@@ -55,8 +55,11 @@ namespace PetManager
 
         private void btnVoltar_Click(object sender, EventArgs e)
         {
-
+            this.Hide(); // Esconde a tela de Registros
+            TelaInicial telaInicial = new TelaInicial();
+            telaInicial.Show();
         }
+        
 
         private void Registros_Load(object sender, EventArgs e)
         {

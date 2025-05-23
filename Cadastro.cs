@@ -118,5 +118,24 @@ namespace PetManager
                 pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage; // ou Zoom, se quiser manter a proporção
             }
         }
+
+        private void pictureBox2_Click(object sender, EventArgs e)
+        {
+            this.Hide(); // Esconde a tela atual
+            TelaInicial telaInicial = new TelaInicial();
+            telaInicial.Show(); // Abre a tela inicial
+        }
+
+        private void pictureBox2_MouseEnter(object sender, EventArgs e)
+        {
+            pictureBox2.Cursor = Cursors.Hand; // Muda o cursor pra mãozinha
+            pictureBox2.BackColor = Color.LightGray; // Opcional: destaca o fundo
+        }
+
+        private void pictureBox2_MouseLeave(object sender, EventArgs e)
+        {
+            pictureBox2.Cursor = Cursors.Default; // Volta pro cursor padrão
+            pictureBox2.BackColor = Color.Transparent; // Remove o destaque
+        }
     }
 }
