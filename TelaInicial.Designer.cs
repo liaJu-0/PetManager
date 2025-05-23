@@ -72,7 +72,7 @@
             // 
             // pictureBox3
             // 
-            pictureBox3.Image = Properties.Resources.botao_sair;
+            pictureBox3.Image = Properties.Resources.botaosair2;
             pictureBox3.Location = new Point(958, 79);
             pictureBox3.Name = "pictureBox3";
             pictureBox3.Size = new Size(37, 35);
