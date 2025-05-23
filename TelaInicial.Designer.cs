@@ -31,6 +31,8 @@
             label1 = new Label();
             btnRegistros = new Button();
             btnNovo = new Button();
+            pictureBox3 = new PictureBox();
+            ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
             SuspendLayout();
             // 
             // label1
@@ -68,12 +70,26 @@
             btnNovo.UseVisualStyleBackColor = true;
             btnNovo.Click += btnNovo_Click;
             // 
+            // pictureBox3
+            // 
+            pictureBox3.Image = Properties.Resources.botao_sair;
+            pictureBox3.Location = new Point(958, 79);
+            pictureBox3.Name = "pictureBox3";
+            pictureBox3.Size = new Size(37, 35);
+            pictureBox3.SizeMode = PictureBoxSizeMode.StretchImage;
+            pictureBox3.TabIndex = 4;
+            pictureBox3.TabStop = false;
+            pictureBox3.Click += pictureBox1_Click;
+            pictureBox3.MouseEnter += pictureBox3_MouseEnter;
+            pictureBox3.MouseLeave += pictureBox3_MouseLeave;
+            // 
             // TelaInicial
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.DarkSeaGreen;
             ClientSize = new Size(1161, 498);
+            Controls.Add(pictureBox3);
             Controls.Add(btnNovo);
             Controls.Add(btnRegistros);
             Controls.Add(label1);
@@ -81,6 +97,7 @@
             Text = "TelaInicial";
             WindowState = FormWindowState.Maximized;
             Load += TelaInicial_Load;
+            ((System.ComponentModel.ISupportInitialize)pictureBox3).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -90,5 +107,6 @@
         private Label label1;
         private Button btnRegistros;
         private Button btnNovo;
+        private PictureBox pictureBox3;
     }
 }

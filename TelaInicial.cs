@@ -33,5 +33,24 @@ namespace PetManager
             Registros telaRegistros = new Registros();
             telaRegistros.Show();
         }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+            this.Hide(); // Esconde a tela atual
+            Login Form1 = new Login();
+            Form1.Show(); // Abre a tela de Login
+        }
+
+        private void pictureBox3_MouseEnter(object sender, EventArgs e)
+        {
+            pictureBox3.Cursor = Cursors.Hand; // Muda o cursor pra mãozinha
+            pictureBox3.BackColor = Color.LightGray; // Opcional: destaca o fundo
+        }
+
+        private void pictureBox3_MouseLeave(object sender, EventArgs e)
+        {
+            pictureBox3.Cursor = Cursors.Default; // Volta pro cursor padrão
+            pictureBox3.BackColor = Color.Transparent; // Remove o destaqu
+        }
     }
 }
