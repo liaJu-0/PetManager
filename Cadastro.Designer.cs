@@ -205,10 +205,10 @@
             btnUpload.TabIndex = 18;
             btnUpload.Text = "Enviar foto";
             btnUpload.UseVisualStyleBackColor = true;
+            btnUpload.Click += btnUpload_Click;
             // 
             // btnSalvar
-            //
-            btnSalvar = new Button();
+            // 
             btnSalvar.Location = new Point(751, 468);
             btnSalvar.Name = "btnSalvar";
             btnSalvar.Size = new Size(132, 24);

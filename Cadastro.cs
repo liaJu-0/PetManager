@@ -73,7 +73,7 @@ namespace PetManager
                 MessageBox.Show("Erro ao salvar: " + ex.Message);
                 return;
             }
-            
+
             DialogResult resultado = MessageBox.Show(
                 "Cadastro salvo com sucesso!\n\nDeseja visualizar os registros?",
                 "Confirmação",
@@ -104,6 +104,19 @@ namespace PetManager
         private void txtTamanho_SelectedIndexChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void btnUpload_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog ofd = new OpenFileDialog();
+            ofd.Title = "Selecione uma imagem";
+            ofd.Filter = "Arquivos de Imagem|*.jpg;*.jpeg;*.png;*.bmp;*.gif";
+
+            if (ofd.ShowDialog() == DialogResult.OK)
+            {
+                pictureBox1.Image = Image.FromFile(ofd.FileName);
+                pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage; // ou Zoom, se quiser manter a proporção
+            }
         }
     }
 }
