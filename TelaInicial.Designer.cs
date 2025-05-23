@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TelaInicial));
             label1 = new Label();
             btnRegistros = new Button();
             btnNovo = new Button();
@@ -40,7 +41,7 @@
             label1.AutoSize = true;
             label1.Font = new Font("Tahoma", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label1.ForeColor = Color.DarkGreen;
-            label1.Location = new Point(468, 153);
+            label1.Location = new Point(470, 180);
             label1.Name = "label1";
             label1.Size = new Size(263, 36);
             label1.TabIndex = 1;
@@ -50,7 +51,7 @@
             // 
             btnRegistros.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnRegistros.ForeColor = Color.DarkGreen;
-            btnRegistros.Location = new Point(540, 213);
+            btnRegistros.Location = new Point(542, 240);
             btnRegistros.Name = "btnRegistros";
             btnRegistros.Size = new Size(132, 37);
             btnRegistros.TabIndex = 2;
@@ -62,7 +63,7 @@
             // 
             btnNovo.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnNovo.ForeColor = Color.DarkGreen;
-            btnNovo.Location = new Point(540, 265);
+            btnNovo.Location = new Point(542, 292);
             btnNovo.Name = "btnNovo";
             btnNovo.Size = new Size(132, 37);
             btnNovo.TabIndex = 3;
@@ -73,7 +74,7 @@
             // pictureBox3
             // 
             pictureBox3.Image = Properties.Resources.botaosair2;
-            pictureBox3.Location = new Point(958, 79);
+            pictureBox3.Location = new Point(1070, 30);
             pictureBox3.Name = "pictureBox3";
             pictureBox3.Size = new Size(37, 35);
             pictureBox3.SizeMode = PictureBoxSizeMode.StretchImage;
@@ -87,7 +88,9 @@
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = Color.DarkSeaGreen;
+            BackColor = Color.MintCream;
+            BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
+            BackgroundImageLayout = ImageLayout.Stretch;
             ClientSize = new Size(1161, 498);
             Controls.Add(pictureBox3);
             Controls.Add(btnNovo);

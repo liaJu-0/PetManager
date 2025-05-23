@@ -78,7 +78,7 @@
             // pictureBox1
             // 
             pictureBox1.Image = Properties.Resources.transferir1;
-            pictureBox1.Location = new Point(587, 327);
+            pictureBox1.Location = new Point(595, 404);
             pictureBox1.Name = "pictureBox1";
             pictureBox1.Size = new Size(132, 130);
             pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
@@ -90,7 +90,7 @@
             label1.AutoSize = true;
             label1.Font = new Font("Tahoma", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label1.ForeColor = Color.Green;
-            label1.Location = new Point(99, 79);
+            label1.Location = new Point(107, 156);
             label1.Name = "label1";
             label1.Size = new Size(83, 28);
             label1.TabIndex = 1;
@@ -101,7 +101,7 @@
             label2.AutoSize = true;
             label2.Font = new Font("Tahoma", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label2.ForeColor = Color.Green;
-            label2.Location = new Point(99, 262);
+            label2.Location = new Point(107, 339);
             label2.Name = "label2";
             label2.Size = new Size(84, 28);
             label2.TabIndex = 2;
@@ -112,7 +112,7 @@
             label3.AutoSize = true;
             label3.Font = new Font("Tahoma", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label3.ForeColor = Color.Green;
-            label3.Location = new Point(587, 79);
+            label3.Location = new Point(595, 156);
             label3.Name = "label3";
             label3.Size = new Size(103, 28);
             label3.TabIndex = 3;
@@ -120,42 +120,42 @@
             // 
             // txtTipo
             // 
-            txtTipo.Location = new Point(99, 135);
+            txtTipo.Location = new Point(107, 212);
             txtTipo.Name = "txtTipo";
             txtTipo.Size = new Size(103, 27);
             txtTipo.TabIndex = 4;
             // 
             // txtRaca
             // 
-            txtRaca.Location = new Point(417, 135);
+            txtRaca.Location = new Point(425, 212);
             txtRaca.Name = "txtRaca";
             txtRaca.Size = new Size(85, 27);
             txtRaca.TabIndex = 7;
             // 
             // txtNome
             // 
-            txtNome.Location = new Point(223, 133);
+            txtNome.Location = new Point(231, 210);
             txtNome.Name = "txtNome";
             txtNome.Size = new Size(177, 27);
             txtNome.TabIndex = 6;
             // 
             // txtCorPelo
             // 
-            txtCorPelo.Location = new Point(280, 199);
+            txtCorPelo.Location = new Point(288, 276);
             txtCorPelo.Name = "txtCorPelo";
             txtCorPelo.Size = new Size(103, 27);
             txtCorPelo.TabIndex = 8;
             // 
             // txtTamPelo
             // 
-            txtTamPelo.Location = new Point(399, 199);
+            txtTamPelo.Location = new Point(407, 276);
             txtTamPelo.Name = "txtTamPelo";
             txtTamPelo.Size = new Size(103, 27);
             txtTamPelo.TabIndex = 9;
             // 
             // dateNscto
             // 
-            dateNscto.Location = new Point(99, 199);
+            dateNscto.Location = new Point(107, 276);
             dateNscto.Name = "dateNscto";
             dateNscto.Size = new Size(163, 27);
             dateNscto.TabIndex = 10;
@@ -164,14 +164,14 @@
             // 
             comboBoxCastrado.FormattingEnabled = true;
             comboBoxCastrado.Items.AddRange(new object[] { "Sim", "Não" });
-            comboBoxCastrado.Location = new Point(99, 327);
+            comboBoxCastrado.Location = new Point(107, 404);
             comboBoxCastrado.Name = "comboBoxCastrado";
             comboBoxCastrado.Size = new Size(90, 28);
             comboBoxCastrado.TabIndex = 11;
             // 
             // txtVacinas
             // 
-            txtVacinas.Location = new Point(223, 327);
+            txtVacinas.Location = new Point(231, 404);
             txtVacinas.Multiline = true;
             txtVacinas.Name = "txtVacinas";
             txtVacinas.Size = new Size(279, 60);
@@ -179,7 +179,7 @@
             // 
             // txtObs
             // 
-            txtObs.Location = new Point(223, 419);
+            txtObs.Location = new Point(231, 496);
             txtObs.Multiline = true;
             txtObs.Name = "txtObs";
             txtObs.Size = new Size(279, 73);
@@ -187,14 +187,14 @@
             // 
             // dateEntrada
             // 
-            dateEntrada.Location = new Point(587, 133);
+            dateEntrada.Location = new Point(595, 210);
             dateEntrada.Name = "dateEntrada";
             dateEntrada.Size = new Size(296, 27);
             dateEntrada.TabIndex = 16;
             // 
             // txtResumo
             // 
-            txtResumo.Location = new Point(587, 193);
+            txtResumo.Location = new Point(595, 270);
             txtResumo.Multiline = true;
             txtResumo.Name = "txtResumo";
             txtResumo.Size = new Size(296, 97);
@@ -202,7 +202,7 @@
             // 
             // btnUpload
             // 
-            btnUpload.Location = new Point(587, 468);
+            btnUpload.Location = new Point(595, 545);
             btnUpload.Name = "btnUpload";
             btnUpload.Size = new Size(132, 24);
             btnUpload.TabIndex = 18;
@@ -212,7 +212,7 @@
             // 
             // btnSalvar
             // 
-            btnSalvar.Location = new Point(751, 468);
+            btnSalvar.Location = new Point(759, 545);
             btnSalvar.Name = "btnSalvar";
             btnSalvar.Size = new Size(132, 24);
             btnSalvar.TabIndex = 19;
@@ -224,7 +224,7 @@
             // 
             label4.AutoSize = true;
             label4.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label4.Location = new Point(99, 112);
+            label4.Location = new Point(107, 189);
             label4.Name = "label4";
             label4.Size = new Size(40, 20);
             label4.TabIndex = 20;
@@ -234,7 +234,7 @@
             // 
             label5.AutoSize = true;
             label5.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label5.Location = new Point(223, 110);
+            label5.Location = new Point(231, 187);
             label5.Name = "label5";
             label5.Size = new Size(52, 20);
             label5.TabIndex = 21;
@@ -245,7 +245,7 @@
             // 
             label6.AutoSize = true;
             label6.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label6.Location = new Point(417, 112);
+            label6.Location = new Point(425, 189);
             label6.Name = "label6";
             label6.Size = new Size(42, 20);
             label6.TabIndex = 22;
@@ -255,7 +255,7 @@
             // 
             label7.AutoSize = true;
             label7.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label7.Location = new Point(99, 176);
+            label7.Location = new Point(107, 253);
             label7.Name = "label7";
             label7.Size = new Size(151, 20);
             label7.TabIndex = 23;
@@ -265,7 +265,7 @@
             // 
             label8.AutoSize = true;
             label8.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label8.Location = new Point(280, 176);
+            label8.Location = new Point(288, 253);
             label8.Name = "label8";
             label8.Size = new Size(33, 20);
             label8.TabIndex = 24;
@@ -275,7 +275,7 @@
             // 
             label9.AutoSize = true;
             label9.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label9.Location = new Point(399, 176);
+            label9.Location = new Point(407, 253);
             label9.Name = "label9";
             label9.Size = new Size(69, 20);
             label9.TabIndex = 25;
@@ -285,7 +285,7 @@
             // 
             label10.AutoSize = true;
             label10.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label10.Location = new Point(99, 304);
+            label10.Location = new Point(107, 381);
             label10.Name = "label10";
             label10.Size = new Size(78, 20);
             label10.TabIndex = 26;
@@ -295,7 +295,7 @@
             // 
             label11.AutoSize = true;
             label11.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label11.Location = new Point(99, 372);
+            label11.Location = new Point(107, 449);
             label11.Name = "label11";
             label11.Size = new Size(42, 20);
             label11.TabIndex = 27;
@@ -305,7 +305,7 @@
             // 
             label12.AutoSize = true;
             label12.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label12.Location = new Point(99, 438);
+            label12.Location = new Point(107, 515);
             label12.Name = "label12";
             label12.Size = new Size(47, 20);
             label12.TabIndex = 28;
@@ -315,7 +315,7 @@
             // 
             label13.AutoSize = true;
             label13.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label13.Location = new Point(223, 304);
+            label13.Location = new Point(231, 381);
             label13.Name = "label13";
             label13.Size = new Size(61, 20);
             label13.TabIndex = 29;
@@ -325,7 +325,7 @@
             // 
             label14.AutoSize = true;
             label14.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label14.Location = new Point(223, 395);
+            label14.Location = new Point(231, 472);
             label14.Name = "label14";
             label14.Size = new Size(98, 20);
             label14.TabIndex = 30;
@@ -335,7 +335,7 @@
             // 
             label15.AutoSize = true;
             label15.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label15.Location = new Point(587, 110);
+            label15.Location = new Point(595, 187);
             label15.Name = "label15";
             label15.Size = new Size(121, 20);
             label15.TabIndex = 31;
@@ -345,7 +345,7 @@
             // 
             label16.AutoSize = true;
             label16.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label16.Location = new Point(587, 170);
+            label16.Location = new Point(595, 247);
             label16.Name = "label16";
             label16.Size = new Size(66, 20);
             label16.TabIndex = 32;
@@ -355,7 +355,7 @@
             // 
             txtTamanho.FormattingEnabled = true;
             txtTamanho.Items.AddRange(new object[] { "Pequeno", "Médio", "Grande" });
-            txtTamanho.Location = new Point(99, 464);
+            txtTamanho.Location = new Point(107, 541);
             txtTamanho.Name = "txtTamanho";
             txtTamanho.Size = new Size(90, 28);
             txtTamanho.TabIndex = 33;
@@ -363,7 +363,7 @@
             // 
             // txtPeso
             // 
-            txtPeso.Location = new Point(99, 395);
+            txtPeso.Location = new Point(107, 472);
             txtPeso.Name = "txtPeso";
             txtPeso.Size = new Size(90, 27);
             txtPeso.TabIndex = 12;
@@ -373,7 +373,7 @@
             pictureBox2.ErrorImage = null;
             pictureBox2.Image = (Image)resources.GetObject("pictureBox2.Image");
             pictureBox2.InitialImage = (Image)resources.GetObject("pictureBox2.InitialImage");
-            pictureBox2.Location = new Point(958, 79);
+            pictureBox2.Location = new Point(1096, 34);
             pictureBox2.Name = "pictureBox2";
             pictureBox2.Size = new Size(37, 35);
             pictureBox2.SizeMode = PictureBoxSizeMode.StretchImage;
@@ -387,8 +387,10 @@
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = Color.DarkSeaGreen;
-            ClientSize = new Size(1242, 544);
+            BackColor = Color.MintCream;
+            BackgroundImage = Properties.Resources.Pet_Manager2;
+            BackgroundImageLayout = ImageLayout.Stretch;
+            ClientSize = new Size(1242, 712);
             Controls.Add(pictureBox2);
             Controls.Add(txtTamanho);
             Controls.Add(label16);

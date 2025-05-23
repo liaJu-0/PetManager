@@ -41,14 +41,13 @@
             label1.ForeColor = Color.DarkGreen;
             label1.Location = new Point(489, 153);
             label1.Name = "label1";
-            label1.Size = new Size(197, 36);
+            label1.Size = new Size(0, 36);
             label1.TabIndex = 0;
-            label1.Text = "PetManager";
             // 
             // btnLogin
             // 
             btnLogin.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnLogin.Location = new Point(551, 282);
+            btnLogin.Location = new Point(524, 319);
             btnLogin.Name = "btnLogin";
             btnLogin.Size = new Size(86, 27);
             btnLogin.TabIndex = 1;
@@ -58,25 +57,30 @@
             // 
             // txtUsuario
             // 
-            txtUsuario.Location = new Point(514, 206);
+            txtUsuario.Location = new Point(489, 229);
             txtUsuario.Name = "txtUsuario";
             txtUsuario.Size = new Size(156, 27);
             txtUsuario.TabIndex = 2;
             txtUsuario.Text = "Usuário";
+            txtUsuario.TextAlign = HorizontalAlignment.Center;
             // 
             // txtSenha
             // 
-            txtSenha.Location = new Point(514, 239);
+            txtSenha.Location = new Point(489, 262);
             txtSenha.Name = "txtSenha";
             txtSenha.Size = new Size(156, 27);
             txtSenha.TabIndex = 3;
             txtSenha.Text = "Senha";
+            txtSenha.TextAlign = HorizontalAlignment.Center;
+            txtSenha.TextChanged += txtSenha_TextChanged;
             // 
             // Login
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = Color.DarkSeaGreen;
+            BackColor = Color.MintCream;
+            BackgroundImage = Properties.Resources.Pet_Manager;
+            BackgroundImageLayout = ImageLayout.Stretch;
             ClientSize = new Size(1128, 502);
             Controls.Add(txtSenha);
             Controls.Add(txtUsuario);

@@ -103,6 +103,26 @@ namespace PetManager.Properties {
         /// <summary>
         ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Pet_Manager2 {
+            get {
+                object obj = ResourceManager.GetObject("Pet Manager2", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Pet_Manager21 {
+            get {
+                object obj = ResourceManager.GetObject("Pet Manager21", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap seta_esquerda {
             get {
                 object obj = ResourceManager.GetObject("seta-esquerda", resourceCulture);

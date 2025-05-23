@@ -46,7 +46,7 @@
             groupBox1.Controls.Add(BoxFiltroPorte);
             groupBox1.Controls.Add(BoxFiltroTipo);
             groupBox1.Controls.Add(CheckListBox1);
-            groupBox1.Location = new Point(35, 132);
+            groupBox1.Location = new Point(31, 161);
             groupBox1.Name = "groupBox1";
             groupBox1.Size = new Size(145, 180);
             groupBox1.TabIndex = 0;
@@ -92,7 +92,7 @@
             // 
             TxtPesquisa.BackColor = Color.Honeydew;
             TxtPesquisa.Cursor = Cursors.Hand;
-            TxtPesquisa.Location = new Point(244, 132);
+            TxtPesquisa.Location = new Point(250, 170);
             TxtPesquisa.Name = "TxtPesquisa";
             TxtPesquisa.ShortcutsEnabled = false;
             TxtPesquisa.Size = new Size(567, 27);
@@ -114,7 +114,7 @@
             // panel1
             // 
             panel1.Controls.Add(ListPesquisa);
-            panel1.Location = new Point(244, 158);
+            panel1.Location = new Point(250, 196);
             panel1.Name = "panel1";
             panel1.Size = new Size(567, 40);
             panel1.TabIndex = 3;
@@ -133,7 +133,9 @@
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = Color.DarkSeaGreen;
+            BackColor = Color.MintCream;
+            BackgroundImage = Properties.Resources.Pet_Manager21;
+            BackgroundImageLayout = ImageLayout.Stretch;
             ClientSize = new Size(1243, 543);
             Controls.Add(btnVoltar);
             Controls.Add(panel1);
