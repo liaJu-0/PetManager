@@ -9,7 +9,12 @@ namespace PetManager
 
         private void Login_Load(object sender, EventArgs e)
         {
+            txtUsuario.Text = "Usuário";
+            txtUsuario.ForeColor = Color.Gray;
 
+            txtSenha.Text = "Senha";
+            txtSenha.ForeColor = Color.Gray;
+            txtSenha.UseSystemPasswordChar = false;
         }
 
         private void btnLogin_Click(object sender, EventArgs e)
@@ -34,6 +39,44 @@ namespace PetManager
         private void txtSenha_TextChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void txtUsuario_Leave(object sender, EventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(txtUsuario.Text))
+            {
+                txtUsuario.Text = "Usuário";
+                txtUsuario.ForeColor = Color.Gray;
+            }
+        }
+
+        private void txtUsuario_Enter(object sender, EventArgs e)
+        {
+            if (txtUsuario.Text == "Usuário")
+            {
+                txtUsuario.Text = "";
+                txtUsuario.ForeColor = Color.Black;
+            }
+        }
+
+        private void txtSenha_Leave(object sender, EventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(txtSenha.Text))
+            {
+                txtSenha.UseSystemPasswordChar = false;  // mostra o texto placeholder
+                txtSenha.Text = "Senha";
+                txtSenha.ForeColor = Color.Gray;
+            }
+        }
+
+        private void txtSenha_Enter(object sender, EventArgs e)
+        {
+            if (txtSenha.Text == "Senha")
+            {
+                txtSenha.Text = "";
+                txtSenha.ForeColor = Color.Black;
+                txtSenha.UseSystemPasswordChar = true;  // oculta a senha
+            }
         }
     }
 }

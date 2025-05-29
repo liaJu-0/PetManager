@@ -57,15 +57,19 @@
             // 
             // txtUsuario
             // 
+            txtUsuario.ForeColor = Color.Gray;
             txtUsuario.Location = new Point(851, 486);
             txtUsuario.Name = "txtUsuario";
             txtUsuario.Size = new Size(200, 27);
             txtUsuario.TabIndex = 2;
             txtUsuario.Text = "Usuário";
             txtUsuario.TextAlign = HorizontalAlignment.Center;
+            txtUsuario.Enter += txtUsuario_Enter;
+            txtUsuario.Leave += txtUsuario_Leave;
             // 
             // txtSenha
             // 
+            txtSenha.ForeColor = Color.Gray;
             txtSenha.Location = new Point(851, 519);
             txtSenha.Name = "txtSenha";
             txtSenha.Size = new Size(200, 27);
@@ -73,6 +77,8 @@
             txtSenha.Text = "Senha";
             txtSenha.TextAlign = HorizontalAlignment.Center;
             txtSenha.TextChanged += txtSenha_TextChanged;
+            txtSenha.Enter += txtSenha_Enter;
+            txtSenha.Leave += txtSenha_Leave;
             // 
             // Login
             // 
