@@ -370,10 +370,11 @@
             // 
             // pictureBox2
             // 
+            pictureBox2.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             pictureBox2.ErrorImage = null;
             pictureBox2.Image = (Image)resources.GetObject("pictureBox2.Image");
             pictureBox2.InitialImage = (Image)resources.GetObject("pictureBox2.InitialImage");
-            pictureBox2.Location = new Point(1096, 34);
+            pictureBox2.Location = new Point(860, 34);
             pictureBox2.Name = "pictureBox2";
             pictureBox2.Size = new Size(37, 35);
             pictureBox2.SizeMode = PictureBoxSizeMode.StretchImage;
@@ -390,7 +391,7 @@
             BackColor = Color.MintCream;
             BackgroundImage = Properties.Resources.Pet_Manager2;
             BackgroundImageLayout = ImageLayout.Stretch;
-            ClientSize = new Size(1242, 712);
+            ClientSize = new Size(1006, 661);
             Controls.Add(pictureBox2);
             Controls.Add(txtTamanho);
             Controls.Add(label16);
@@ -425,6 +426,8 @@
             Controls.Add(label1);
             Controls.Add(pictureBox1);
             ForeColor = Color.Black;
+            MaximumSize = new Size(1024, 708);
+            MinimumSize = new Size(1024, 708);
             Name = "Cadastro";
             Text = "Cadastro";
             Load += Cadastro_Load;

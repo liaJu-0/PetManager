@@ -41,7 +41,7 @@
             label1.AutoSize = true;
             label1.Font = new Font("Tahoma", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label1.ForeColor = Color.DarkGreen;
-            label1.Location = new Point(470, 180);
+            label1.Location = new Point(820, 193);
             label1.Name = "label1";
             label1.Size = new Size(263, 36);
             label1.TabIndex = 1;
@@ -51,9 +51,11 @@
             // 
             btnRegistros.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnRegistros.ForeColor = Color.DarkGreen;
-            btnRegistros.Location = new Point(542, 240);
+            btnRegistros.Location = new Point(885, 297);
+            btnRegistros.MaximumSize = new Size(160, 40);
+            btnRegistros.MinimumSize = new Size(160, 40);
             btnRegistros.Name = "btnRegistros";
-            btnRegistros.Size = new Size(132, 37);
+            btnRegistros.Size = new Size(160, 40);
             btnRegistros.TabIndex = 2;
             btnRegistros.Text = "Registros";
             btnRegistros.UseVisualStyleBackColor = true;
@@ -63,9 +65,11 @@
             // 
             btnNovo.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnNovo.ForeColor = Color.DarkGreen;
-            btnNovo.Location = new Point(542, 292);
+            btnNovo.Location = new Point(885, 349);
+            btnNovo.MaximumSize = new Size(160, 40);
+            btnNovo.MinimumSize = new Size(160, 40);
             btnNovo.Name = "btnNovo";
-            btnNovo.Size = new Size(132, 37);
+            btnNovo.Size = new Size(160, 40);
             btnNovo.TabIndex = 3;
             btnNovo.Text = "Novo Registro";
             btnNovo.UseVisualStyleBackColor = true;
@@ -73,8 +77,9 @@
             // 
             // pictureBox3
             // 
+            pictureBox3.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             pictureBox3.Image = Properties.Resources.botaosair2;
-            pictureBox3.Location = new Point(1070, 30);
+            pictureBox3.Location = new Point(1761, 60);
             pictureBox3.Name = "pictureBox3";
             pictureBox3.Size = new Size(37, 35);
             pictureBox3.SizeMode = PictureBoxSizeMode.StretchImage;
@@ -91,7 +96,7 @@
             BackColor = Color.MintCream;
             BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
             BackgroundImageLayout = ImageLayout.Stretch;
-            ClientSize = new Size(1161, 498);
+            ClientSize = new Size(1902, 1033);
             Controls.Add(pictureBox3);
             Controls.Add(btnNovo);
             Controls.Add(btnRegistros);

@@ -59,6 +59,8 @@
             // 
             txtUsuario.ForeColor = Color.Gray;
             txtUsuario.Location = new Point(851, 486);
+            txtUsuario.MaximumSize = new Size(200, 27);
+            txtUsuario.MinimumSize = new Size(200, 27);
             txtUsuario.Name = "txtUsuario";
             txtUsuario.Size = new Size(200, 27);
             txtUsuario.TabIndex = 2;
@@ -71,6 +73,8 @@
             // 
             txtSenha.ForeColor = Color.Gray;
             txtSenha.Location = new Point(851, 519);
+            txtSenha.MaximumSize = new Size(200, 27);
+            txtSenha.MinimumSize = new Size(200, 27);
             txtSenha.Name = "txtSenha";
             txtSenha.Size = new Size(200, 27);
             txtSenha.TabIndex = 3;
