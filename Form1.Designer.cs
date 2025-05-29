@@ -47,9 +47,9 @@
             // btnLogin
             // 
             btnLogin.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnLogin.Location = new Point(524, 319);
+            btnLogin.Location = new Point(906, 589);
             btnLogin.Name = "btnLogin";
-            btnLogin.Size = new Size(86, 27);
+            btnLogin.Size = new Size(90, 30);
             btnLogin.TabIndex = 1;
             btnLogin.Text = "Login";
             btnLogin.UseVisualStyleBackColor = true;
@@ -57,18 +57,18 @@
             // 
             // txtUsuario
             // 
-            txtUsuario.Location = new Point(489, 229);
+            txtUsuario.Location = new Point(851, 486);
             txtUsuario.Name = "txtUsuario";
-            txtUsuario.Size = new Size(156, 27);
+            txtUsuario.Size = new Size(200, 27);
             txtUsuario.TabIndex = 2;
             txtUsuario.Text = "Usuário";
             txtUsuario.TextAlign = HorizontalAlignment.Center;
             // 
             // txtSenha
             // 
-            txtSenha.Location = new Point(489, 262);
+            txtSenha.Location = new Point(851, 519);
             txtSenha.Name = "txtSenha";
-            txtSenha.Size = new Size(156, 27);
+            txtSenha.Size = new Size(200, 27);
             txtSenha.TabIndex = 3;
             txtSenha.Text = "Senha";
             txtSenha.TextAlign = HorizontalAlignment.Center;
@@ -81,7 +81,7 @@
             BackColor = Color.MintCream;
             BackgroundImage = Properties.Resources.Pet_Manager;
             BackgroundImageLayout = ImageLayout.Stretch;
-            ClientSize = new Size(1128, 502);
+            ClientSize = new Size(1902, 1033);
             Controls.Add(txtSenha);
             Controls.Add(txtUsuario);
             Controls.Add(btnLogin);

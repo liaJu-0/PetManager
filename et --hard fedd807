@@ -1,0 +1,18 @@
+[33m332da46[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmaster[m[33m, [m[1;31morigin/master[m[33m, [m[1;31morigin/HEAD[m[33m)[m Adicionados os planos de fundo das telas
+[33m9b8d2cd[m Atulização do designer da tela de Login
+[33mfedd807[m Alteração da cor do icone de deslogar
+[33mdc67057[m Adicionado icone de deslogar na tela inicial, para voltar a tela de login
+[33m65fe4ca[m Adicionado botão de voltar na tela de cadastro e icone para voltar a tela inicial na tela de Registros, ambos funcionais
+[33m78c8d52[m Adicionado upload de imagem com btnUpload
+[33m90bd289[m Adição do .csv e funcionalidades como o botão de salvar, direcionamento para o menu e registro após o preenchimento do formulário de registro
+[33m143f058[m Alterações
+[33m38482bf[m Salvando minhas alterações
+[33m9b27fb4[m Ajustes de erros
+[33maf4b7ab[m Ajustes de erros
+[33ma859f64[m Resolução de problemas com compilação e ambiguidadeInseridas as legendas da tela de cadastro
+[33mb2a1352[m Inseridas as legendas da tela de cadastro
+[33m7b27e75[m Inserir Filtro na tela Registros
+[33m1da4915[m Acréscimo das textbox, labels e botões
+[33mf4b7111[m Acrescimo das telas: Inicial, Cadastros e Novo Cadastro
+[33m844b087[m Adicionar arquivos de projeto.
+[33m759ab71[m Adicione .gitattributes e .gitignore.
