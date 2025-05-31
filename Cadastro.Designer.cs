@@ -46,13 +46,11 @@
             txtRaca = new TextBox();
             txtNome = new TextBox();
             txtCorPelo = new TextBox();
-            txtTamPelo = new TextBox();
             dateNscto = new DateTimePicker();
             comboBoxCastrado = new ComboBox();
             txtVacinas = new TextBox();
             txtObs = new TextBox();
             dateEntrada = new DateTimePicker();
-            txtResumo = new TextBox();
             btnUpload = new Button();
             btnSalvar = new Button();
             label4 = new Label();
@@ -71,6 +69,10 @@
             txtTamanho = new ComboBox();
             txtPeso = new TextBox();
             pictureBox2 = new PictureBox();
+            label17 = new Label();
+            dateSaida = new DateTimePicker();
+            txtResumo = new TextBox();
+            txtTamPelo = new ComboBox();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             SuspendLayout();
@@ -114,9 +116,9 @@
             label3.ForeColor = Color.Green;
             label3.Location = new Point(595, 156);
             label3.Name = "label3";
-            label3.Size = new Size(103, 28);
+            label3.Size = new Size(195, 28);
             label3.TabIndex = 3;
-            label3.Text = "Entrada";
+            label3.Text = "Entrada e Saída";
             // 
             // txtTipo
             // 
@@ -145,13 +147,6 @@
             txtCorPelo.Name = "txtCorPelo";
             txtCorPelo.Size = new Size(103, 27);
             txtCorPelo.TabIndex = 8;
-            // 
-            // txtTamPelo
-            // 
-            txtTamPelo.Location = new Point(407, 276);
-            txtTamPelo.Name = "txtTamPelo";
-            txtTamPelo.Size = new Size(103, 27);
-            txtTamPelo.TabIndex = 9;
             // 
             // dateNscto
             // 
@@ -189,16 +184,8 @@
             // 
             dateEntrada.Location = new Point(595, 210);
             dateEntrada.Name = "dateEntrada";
-            dateEntrada.Size = new Size(296, 27);
+            dateEntrada.Size = new Size(132, 27);
             dateEntrada.TabIndex = 16;
-            // 
-            // txtResumo
-            // 
-            txtResumo.Location = new Point(595, 270);
-            txtResumo.Multiline = true;
-            txtResumo.Name = "txtResumo";
-            txtResumo.Size = new Size(296, 97);
-            txtResumo.TabIndex = 17;
             // 
             // btnUpload
             // 
@@ -384,6 +371,40 @@
             pictureBox2.MouseEnter += pictureBox2_MouseEnter;
             pictureBox2.MouseLeave += pictureBox2_MouseLeave;
             // 
+            // label17
+            // 
+            label17.AutoSize = true;
+            label17.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label17.Location = new Point(759, 187);
+            label17.Name = "label17";
+            label17.Size = new Size(103, 20);
+            label17.TabIndex = 36;
+            label17.Text = "Data de saída";
+            // 
+            // dateSaida
+            // 
+            dateSaida.Location = new Point(759, 210);
+            dateSaida.Name = "dateSaida";
+            dateSaida.Size = new Size(132, 27);
+            dateSaida.TabIndex = 35;
+            // 
+            // txtResumo
+            // 
+            txtResumo.Location = new Point(595, 270);
+            txtResumo.Multiline = true;
+            txtResumo.Name = "txtResumo";
+            txtResumo.Size = new Size(296, 97);
+            txtResumo.TabIndex = 17;
+            // 
+            // txtTamPelo
+            // 
+            txtTamPelo.FormattingEnabled = true;
+            txtTamPelo.Items.AddRange(new object[] { "Curto", "Médio", "Longo" });
+            txtTamPelo.Location = new Point(407, 278);
+            txtTamPelo.Name = "txtTamPelo";
+            txtTamPelo.Size = new Size(90, 28);
+            txtTamPelo.TabIndex = 37;
+            // 
             // Cadastro
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -392,6 +413,9 @@
             BackgroundImage = Properties.Resources.Pet_Manager2;
             BackgroundImageLayout = ImageLayout.Stretch;
             ClientSize = new Size(1006, 661);
+            Controls.Add(txtTamPelo);
+            Controls.Add(label17);
+            Controls.Add(dateSaida);
             Controls.Add(pictureBox2);
             Controls.Add(txtTamanho);
             Controls.Add(label16);
@@ -416,7 +440,6 @@
             Controls.Add(txtPeso);
             Controls.Add(comboBoxCastrado);
             Controls.Add(dateNscto);
-            Controls.Add(txtTamPelo);
             Controls.Add(txtCorPelo);
             Controls.Add(txtRaca);
             Controls.Add(txtNome);
@@ -447,13 +470,11 @@
         private TextBox txtRaca;
         private TextBox txtNome;
         private TextBox txtCorPelo;
-        private TextBox txtTamPelo;
         private DateTimePicker dateNscto;
         private ComboBox comboBoxCastrado;
         private TextBox txtVacinas;
         private TextBox txtObs;
         private DateTimePicker dateEntrada;
-        private TextBox txtResumo;
         private Button btnUpload;
         private Button btnSalvar;
         private Label label4;
@@ -472,5 +493,9 @@
         private ComboBox txtTamanho;
         private TextBox txtPeso;
         private PictureBox pictureBox2;
+        private Label label17;
+        private DateTimePicker dateSaida;
+        private TextBox txtResumo;
+        private ComboBox txtTamPelo;
     }
 }

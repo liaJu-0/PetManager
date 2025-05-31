@@ -54,8 +54,9 @@ namespace PetManager
             string observacoes = txtObs.Text;
             string dataEntrada = dateEntrada.Value.ToShortDateString();
             string resumo = txtResumo.Text;
+            string dataSaida = dateSaida.Value.ToShortDateString();
 
-            string linha = $"{tipo};{nome};{raca};{nascimento};{corPelagem};{tamPelagem};{castrado};{peso};{porte};{vacinas};{observacoes};{dataEntrada};{resumo}";
+            string linha = $"{tipo};{nome};{raca};{nascimento};{corPelagem};{tamPelagem};{castrado};{peso};{porte};{vacinas};{observacoes};{dataEntrada};{dataSaida};{resumo}";
 
             string caminho = "registros.csv";
 
@@ -63,7 +64,7 @@ namespace PetManager
             {
                 if (!File.Exists(caminho))
                 {
-                    File.AppendAllText(caminho, "Tipo;Nome;Raça;Nascimento;Cor;Pelagem;Castrado;Peso;Porte;Vacinas;Observações;DataEntrada;Resumo\n");
+                    File.AppendAllText(caminho, "Tipo;Nome;Raça;Nascimento;Cor;Pelagem;Castrado;Peso;Porte;Vacinas;Observações;DataEntrada;dataSaida;Resumo\n");
                 }
 
                 File.AppendAllText(caminho, linha + "\n");

@@ -29,13 +29,14 @@
         private void InitializeComponent()
         {
             groupBox1 = new GroupBox();
-            BoxFiltroPorte = new ComboBox();
             BoxFiltroTipo = new ComboBox();
+            BoxFiltroPorte = new ComboBox();
             CheckListBox1 = new CheckedListBox();
             TxtPesquisa = new TextBox();
             ListPesquisa = new TextBox();
             panel1 = new Panel();
             btnVoltar = new Button();
+            btnFiltrar = new Button();
             groupBox1.SuspendLayout();
             panel1.SuspendLayout();
             SuspendLayout();
@@ -43,8 +44,8 @@
             // groupBox1
             // 
             groupBox1.BackColor = Color.Honeydew;
-            groupBox1.Controls.Add(BoxFiltroPorte);
             groupBox1.Controls.Add(BoxFiltroTipo);
+            groupBox1.Controls.Add(BoxFiltroPorte);
             groupBox1.Controls.Add(CheckListBox1);
             groupBox1.Location = new Point(31, 161);
             groupBox1.Name = "groupBox1";
@@ -54,28 +55,29 @@
             groupBox1.Text = "Filtros:";
             groupBox1.Enter += groupBox1_Enter;
             // 
+            // BoxFiltroTipo
+            // 
+            BoxFiltroTipo.AutoCompleteCustomSource.AddRange(new string[] { "Grande", "Médio", "Pequeno" });
+            BoxFiltroTipo.FormattingEnabled = true;
+            BoxFiltroTipo.Items.AddRange(new object[] { "Gato", "Cachorro", "Outro" });
+            BoxFiltroTipo.Location = new Point(6, 132);
+            BoxFiltroTipo.Name = "BoxFiltroTipo";
+            BoxFiltroTipo.Size = new Size(89, 28);
+            BoxFiltroTipo.TabIndex = 3;
+            BoxFiltroTipo.Text = "Tipo";
+            BoxFiltroTipo.SelectedIndexChanged += BoxFiltroTipo_SelectedIndexChanged_1;
+            // 
             // BoxFiltroPorte
             // 
             BoxFiltroPorte.AutoCompleteCustomSource.AddRange(new string[] { "Grande", "Médio", "Pequeno" });
             BoxFiltroPorte.FormattingEnabled = true;
             BoxFiltroPorte.Items.AddRange(new object[] { "Pequeno", "Médio", "Grande" });
-            BoxFiltroPorte.Location = new Point(6, 140);
+            BoxFiltroPorte.Location = new Point(6, 98);
             BoxFiltroPorte.Name = "BoxFiltroPorte";
             BoxFiltroPorte.Size = new Size(89, 28);
             BoxFiltroPorte.TabIndex = 2;
             BoxFiltroPorte.Text = "Porte";
             BoxFiltroPorte.SelectedIndexChanged += boxFiltroPorte_SelectedIndexChanged;
-            // 
-            // BoxFiltroTipo
-            // 
-            BoxFiltroTipo.FormattingEnabled = true;
-            BoxFiltroTipo.Items.AddRange(new object[] { "Cachorro", "Gato", "Outros" });
-            BoxFiltroTipo.Location = new Point(6, 106);
-            BoxFiltroTipo.Name = "BoxFiltroTipo";
-            BoxFiltroTipo.Size = new Size(89, 28);
-            BoxFiltroTipo.TabIndex = 1;
-            BoxFiltroTipo.Text = "Tipos";
-            BoxFiltroTipo.SelectedIndexChanged += boxFiltroTipo_SelectedIndexChanged;
             // 
             // CheckListBox1
             // 
@@ -109,14 +111,14 @@
             ListPesquisa.Size = new Size(561, 20);
             ListPesquisa.TabIndex = 2;
             ListPesquisa.Visible = false;
-            ListPesquisa.TextChanged += textBox1_TextChanged;
+            ListPesquisa.TextChanged += ListPesquisa_TextChanged;
             // 
             // panel1
             // 
             panel1.Controls.Add(ListPesquisa);
             panel1.Location = new Point(250, 196);
             panel1.Name = "panel1";
-            panel1.Size = new Size(567, 40);
+            panel1.Size = new Size(567, 145);
             panel1.TabIndex = 3;
             // 
             // btnVoltar
@@ -129,6 +131,16 @@
             btnVoltar.UseVisualStyleBackColor = true;
             btnVoltar.Click += btnVoltar_Click;
             // 
+            // btnFiltrar
+            // 
+            btnFiltrar.Location = new Point(37, 356);
+            btnFiltrar.Name = "btnFiltrar";
+            btnFiltrar.Size = new Size(129, 30);
+            btnFiltrar.TabIndex = 5;
+            btnFiltrar.Text = "Filtrar";
+            btnFiltrar.UseVisualStyleBackColor = true;
+            btnFiltrar.Click += btnFiltrar_Click;
+            // 
             // Registros
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -137,6 +149,7 @@
             BackgroundImage = Properties.Resources.Pet_Manager21;
             BackgroundImageLayout = ImageLayout.Stretch;
             ClientSize = new Size(1243, 543);
+            Controls.Add(btnFiltrar);
             Controls.Add(btnVoltar);
             Controls.Add(panel1);
             Controls.Add(TxtPesquisa);
@@ -157,10 +170,31 @@
         private GroupBox groupBox1;
         private CheckedListBox CheckListBox1;
         private ComboBox BoxFiltroPorte;
-        private ComboBox BoxFiltroTipo;
         private TextBox TxtPesquisa;
         private TextBox ListPesquisa;
         private Panel panel1;
         private Button btnVoltar;
+        private Button btnFiltrar;
+
+        private void groupBox1_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void boxFiltroPorte_SelectedIndexChanged(object sender, EventArgs e)
+        {
+        
+        }
+
+        private void boxFiltroTipo_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void ListPesquisa_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+        private ComboBox BoxFiltroTipo;
     }
 }
