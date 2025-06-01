@@ -123,5 +123,6 @@ namespace PetManager
                 pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
             }
         }
+
     }
 }
