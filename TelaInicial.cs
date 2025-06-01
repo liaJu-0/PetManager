@@ -61,6 +61,7 @@ namespace PetManager
             {
                 SalvarTabelaNoCsv();
             }
+            this.Show();
         }
 
         private void SalvarTabelaNoCsv()
@@ -80,6 +81,7 @@ namespace PetManager
         {
             Registros telaRegistros = new Registros();
             telaRegistros.Show();
+            this.Close();  // Fecha a tela atual ao abrir a nova
         }
 
         private void pictureBox1_Click(object sender, EventArgs e)
