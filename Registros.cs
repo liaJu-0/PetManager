@@ -10,6 +10,7 @@ namespace PetManager
     public partial class Registros : Form
     {
         private DataTable tabela = new DataTable();
+        private bool inicializando = false; // Flag de inicialização
 
         public Registros()
         {
@@ -18,10 +19,11 @@ namespace PetManager
 
         private void Registros_Load(object sender, EventArgs e)
         {
+            inicializando = true;
             CarregarCsv();
             PopularFiltros();
-            // Exibe todos os registros ao abrir, sem pop-up se vazio:
-            ExibirTodosSemAlerta();
+            AplicarFiltros(mostrarAlerta: false); // Nunca alerta ao abrir
+            inicializando = false;
         }
 
         private void CarregarCsv()
@@ -41,10 +43,7 @@ namespace PetManager
                 tabela.Columns.Add(coluna);
 
             if (!File.Exists(caminho))
-            {
-                // Não mostrar pop-up aqui
                 return;
-            }
 
             using (var stream = new FileStream(caminho, FileMode.Open, FileAccess.Read, FileShare.Read))
             using (var reader = new StreamReader(stream))
@@ -100,20 +99,15 @@ namespace PetManager
             }
         }
 
-        private void ExibirTodosSemAlerta()
+        private void AplicarFiltros(bool mostrarAlerta)
         {
             if (tabela == null || tabela.Rows.Count == 0)
             {
+                if (mostrarAlerta)
+                    MessageBox.Show("Nenhum registro encontrado.");
                 panel1.Controls.Clear();
                 return;
             }
-            ExibirResultados(tabela, mostrarAlerta: false);
-        }
-
-        private void AplicarFiltros()
-        {
-            if (tabela == null || tabela.Rows.Count == 0)
-                return;
 
             string termo = TxtPesquisa.Text.ToLower().Trim();
             string tipoSelecionado = BoxFiltroTipo.Text;
@@ -161,8 +155,8 @@ namespace PetManager
 
             if (!resultado.Any())
             {
-                // Aqui sim, mostra o pop-up se não encontrar
-                MessageBox.Show("Nenhum registro encontrado.");
+                if (mostrarAlerta)
+                    MessageBox.Show("Nenhum registro encontrado.");
                 panel1.Controls.Clear();
                 return;
             }
@@ -199,7 +193,7 @@ namespace PetManager
                         SalvarTabelaNoCsv();
                         CarregarCsv();
                         PopularFiltros();
-                        ExibirTodosSemAlerta();
+                        AplicarFiltros(mostrarAlerta: false); // Atualiza sem alerta
                     }
                 };
 
@@ -223,13 +217,14 @@ namespace PetManager
 
         private void TxtPesquisa_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.KeyCode == Keys.Enter)
-                AplicarFiltros();
+            if (!inicializando && e.KeyCode == Keys.Enter)
+                AplicarFiltros(mostrarAlerta: true);
         }
 
         private void btnFiltrar_Click(object sender, EventArgs e)
         {
-            AplicarFiltros();
+            if (!inicializando)
+                AplicarFiltros(mostrarAlerta: true);
         }
 
         private void btnVoltar_Click(object sender, EventArgs e)
@@ -240,17 +235,20 @@ namespace PetManager
 
         private void BoxFiltroTipo_SelectedIndexChanged_1(object sender, EventArgs e)
         {
-            AplicarFiltros();
+            if (!inicializando)
+                AplicarFiltros(mostrarAlerta: true);
         }
 
         private void BoxFiltroPorte_SelectedIndexChanged(object sender, EventArgs e)
         {
-            AplicarFiltros();
+            if (!inicializando)
+                AplicarFiltros(mostrarAlerta: true);
         }
 
         private void CheckListBox1_ItemCheck(object sender, ItemCheckEventArgs e)
         {
-            this.BeginInvoke((Action)(() => AplicarFiltros()));
+            if (!inicializando)
+                this.BeginInvoke((Action)(() => AplicarFiltros(mostrarAlerta: true)));
         }
     }
 }
