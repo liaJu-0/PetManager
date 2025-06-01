@@ -2,14 +2,8 @@
 {
     partial class Registros
     {
-        /// <summary>
-        /// Required designer variable.
-        /// </summary>
         private System.ComponentModel.IContainer components = null;
 
-        /// <summary>
-        /// Clean up any resources being used.
-        /// </summary>
         /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
         protected override void Dispose(bool disposing)
         {
@@ -89,6 +83,7 @@
             CheckListBox1.Name = "CheckListBox1";
             CheckListBox1.Size = new Size(118, 66);
             CheckListBox1.TabIndex = 0;
+            CheckListBox1.ItemCheck += CheckListBox1_ItemCheck;
             // 
             // TxtPesquisa
             // 
@@ -118,12 +113,12 @@
             panel1.Controls.Add(ListPesquisa);
             panel1.Location = new Point(250, 196);
             panel1.Name = "panel1";
-            panel1.Size = new Size(567, 145);
+            panel1.Size = new Size(567, 267);
             panel1.TabIndex = 3;
             // 
             // btnVoltar
             // 
-            btnVoltar.Location = new Point(721, 433);
+            btnVoltar.Location = new Point(727, 469);
             btnVoltar.Name = "btnVoltar";
             btnVoltar.Size = new Size(87, 28);
             btnVoltar.TabIndex = 4;

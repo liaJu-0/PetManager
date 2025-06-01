@@ -8,7 +8,6 @@ namespace PetManager
 {
     public partial class TelaInicial : Form
     {
-        // Tabela central dos registros de pets
         private DataTable tabela = null!;
 
         public TelaInicial()
@@ -39,7 +38,6 @@ namespace PetManager
 
             using (var reader = new StreamReader(caminho))
             {
-                // Pula o cabeçalho
                 if (!reader.EndOfStream)
                     reader.ReadLine();
 
@@ -58,11 +56,9 @@ namespace PetManager
 
         private void btnNovo_Click(object sender, EventArgs e)
         {
-            // Passa a tabela REAL do sistema para Cadastro
             Cadastro telaCadastro = new Cadastro(tabela);
             if (telaCadastro.ShowDialog() == DialogResult.OK)
             {
-                // Ao fechar, salve a tabela no CSV
                 SalvarTabelaNoCsv();
             }
         }

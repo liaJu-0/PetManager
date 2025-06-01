@@ -2,14 +2,8 @@
 {
     partial class TelaInicial
     {
-        /// <summary>
-        /// Required designer variable.
-        /// </summary>
         private System.ComponentModel.IContainer components = null;
 
-        /// <summary>
-        /// Clean up any resources being used.
-        /// </summary>
         /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
         protected override void Dispose(bool disposing)
         {
@@ -22,10 +16,6 @@
 
         #region Windows Form Designer generated code
 
-        /// <summary>
-        /// Required method for Designer support - do not modify
-        /// the contents of this method with the code editor.
-        /// </summary>
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TelaInicial));
@@ -35,9 +25,7 @@
             pictureBox3 = new PictureBox();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
             SuspendLayout();
-            // 
             // label1
-            // 
             label1.AutoSize = true;
             label1.Font = new Font("Tahoma", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label1.ForeColor = Color.DarkGreen;
@@ -46,9 +34,7 @@
             label1.Size = new Size(263, 36);
             label1.TabIndex = 1;
             label1.Text = "Seja Bem Vindo!";
-            // 
             // btnRegistros
-            // 
             btnRegistros.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnRegistros.ForeColor = Color.DarkGreen;
             btnRegistros.Location = new Point(885, 297);
@@ -60,9 +46,7 @@
             btnRegistros.Text = "Registros";
             btnRegistros.UseVisualStyleBackColor = true;
             btnRegistros.Click += btnRegistros_Click;
-            // 
             // btnNovo
-            // 
             btnNovo.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnNovo.ForeColor = Color.DarkGreen;
             btnNovo.Location = new Point(885, 349);
@@ -74,9 +58,7 @@
             btnNovo.Text = "Novo Registro";
             btnNovo.UseVisualStyleBackColor = true;
             btnNovo.Click += btnNovo_Click;
-            // 
             // pictureBox3
-            // 
             pictureBox3.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             pictureBox3.Image = Properties.Resources.botaosair2;
             pictureBox3.Location = new Point(1761, 60);
@@ -88,9 +70,7 @@
             pictureBox3.Click += pictureBox1_Click;
             pictureBox3.MouseEnter += pictureBox3_MouseEnter;
             pictureBox3.MouseLeave += pictureBox3_MouseLeave;
-            // 
             // TelaInicial
-            // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.MintCream;

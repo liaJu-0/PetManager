@@ -22,13 +22,11 @@ namespace PetManager
             string usuario = txtUsuario.Text;
             string senha = txtSenha.Text;
 
-            // Simulação simples de verificação
             if (usuario == "admin" && senha == "1234")
             {
-                // Abrir nova janela
-                Form telaInicial = new TelaInicial(); // você criará essa tela depois
+                Form telaInicial = new TelaInicial();
                 telaInicial.Show();
-                this.Hide(); // Esconde a tela de login
+                this.Hide();
             }
             else
             {
@@ -63,7 +61,7 @@ namespace PetManager
         {
             if (string.IsNullOrWhiteSpace(txtSenha.Text))
             {
-                txtSenha.UseSystemPasswordChar = false;  // mostra o texto placeholder
+                txtSenha.UseSystemPasswordChar = false;
                 txtSenha.Text = "Senha";
                 txtSenha.ForeColor = Color.Gray;
             }
@@ -75,7 +73,7 @@ namespace PetManager
             {
                 txtSenha.Text = "";
                 txtSenha.ForeColor = Color.Black;
-                txtSenha.UseSystemPasswordChar = true;  // oculta a senha
+                txtSenha.UseSystemPasswordChar = true;
             }
         }
     }

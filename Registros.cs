@@ -18,15 +18,19 @@ namespace PetManager
 
             TxtPesquisa.GotFocus += TxtPesquisa_GotFocus;
             TxtPesquisa.LostFocus += TxtPesquisa_LostFocus;
+            TxtPesquisa.KeyDown += TxtPesquisa_KeyDown;
+
+            BoxFiltroTipo.SelectedIndexChanged += BoxFiltroTipo_SelectedIndexChanged_1;
+            BoxFiltroPorte.SelectedIndexChanged += BoxFiltroPorte_SelectedIndexChanged;
+            CheckListBox1.ItemCheck += CheckListBox1_ItemCheck;
+            btnFiltrar.Click += btnFiltrar_Click;
         }
 
         private void Registros_Load(object sender, EventArgs e)
         {
             inicializando = true;
-
             TxtPesquisa.Text = "Pesquisa...";
             TxtPesquisa.ForeColor = Color.Gray;
-
             CarregarCsv();
             PopularFiltros();
             AplicarFiltros(mostrarAlerta: false);
@@ -92,25 +96,17 @@ namespace PetManager
         private void PopularFiltros()
         {
             BoxFiltroTipo.Items.Clear();
-            BoxFiltroPorte.Items.Clear();
-
             BoxFiltroTipo.Items.Add("Todos");
-            BoxFiltroPorte.Items.Add("Todos");
-
-            var tipos = tabela.AsEnumerable()
-                              .Select(r => r["Tipo"].ToString())
-                              .Where(tipo => !string.IsNullOrWhiteSpace(tipo))
-                              .Distinct();
-
-            var portes = tabela.AsEnumerable()
-                               .Select(r => r["Porte"].ToString())
-                               .Where(porte => !string.IsNullOrWhiteSpace(porte))
-                               .Distinct();
-
-            BoxFiltroTipo.Items.AddRange(tipos.Cast<object>().ToArray());
-            BoxFiltroPorte.Items.AddRange(portes.Cast<object>().ToArray());
-
+            BoxFiltroTipo.Items.Add("Gato");
+            BoxFiltroTipo.Items.Add("Cachorro");
+            BoxFiltroTipo.Items.Add("Outro");
             BoxFiltroTipo.SelectedIndex = 0;
+
+            BoxFiltroPorte.Items.Clear();
+            BoxFiltroPorte.Items.Add("Todos");
+            BoxFiltroPorte.Items.Add("Pequeno");
+            BoxFiltroPorte.Items.Add("Médio");
+            BoxFiltroPorte.Items.Add("Grande");
             BoxFiltroPorte.SelectedIndex = 0;
 
             if (CheckListBox1.Items.Count == 0)
@@ -139,6 +135,7 @@ namespace PetManager
             string porteSelecionado = BoxFiltroPorte.Text;
 
             var selecionados = CheckListBox1.CheckedItems.Cast<string>().ToList();
+
             bool filtrarTodos = selecionados.Contains("Todos") || selecionados.Count == 0;
             bool filtrarAtivos = selecionados.Contains("Ativos");
             bool filtrarInativos = selecionados.Contains("Inativos");
@@ -163,17 +160,11 @@ namespace PetManager
                 if (!filtrarTodos)
                 {
                     if (filtrarAtivos && !filtrarInativos)
-                    {
                         statusMatch = campoDataSaidaVazio || (temDataSaida && dataSaida >= hoje);
-                    }
                     else if (!filtrarAtivos && filtrarInativos)
-                    {
                         statusMatch = !campoDataSaidaVazio && temDataSaida && dataSaida < hoje;
-                    }
                     else if (filtrarAtivos && filtrarInativos)
-                    {
                         statusMatch = true;
-                    }
                 }
 
                 return nomeMatch && tipoMatch && porteMatch && statusMatch;
@@ -218,7 +209,8 @@ namespace PetManager
                         SalvarTabelaNoCsv();
                         CarregarCsv();
                         PopularFiltros();
-                        AplicarFiltros(mostrarAlerta: false);                    }
+                        AplicarFiltros(mostrarAlerta: false);
+                    }
                 };
 
                 panel1.Controls.Add(lbl);
@@ -239,37 +231,37 @@ namespace PetManager
             }
         }
 
-        private void TxtPesquisa_KeyDown(object sender, KeyEventArgs e)
+        private void TxtPesquisa_KeyDown(object? sender, KeyEventArgs e)
         {
             if (!inicializando && e.KeyCode == Keys.Enter)
                 AplicarFiltros(mostrarAlerta: true);
         }
 
-        private void btnFiltrar_Click(object sender, EventArgs e)
+        private void btnFiltrar_Click(object? sender, EventArgs e)
         {
             if (!inicializando)
                 AplicarFiltros(mostrarAlerta: true);
         }
 
-        private void btnVoltar_Click(object sender, EventArgs e)
+        private void btnVoltar_Click(object? sender, EventArgs e)
         {
             new TelaInicial().Show();
             this.Close();
         }
 
-        private void BoxFiltroTipo_SelectedIndexChanged_1(object sender, EventArgs e)
+        private void BoxFiltroTipo_SelectedIndexChanged_1(object? sender, EventArgs e)
         {
             if (!inicializando)
                 AplicarFiltros(mostrarAlerta: true);
         }
 
-        private void BoxFiltroPorte_SelectedIndexChanged(object sender, EventArgs e)
+        private void BoxFiltroPorte_SelectedIndexChanged(object? sender, EventArgs e)
         {
             if (!inicializando)
                 AplicarFiltros(mostrarAlerta: true);
         }
 
-        private void CheckListBox1_ItemCheck(object sender, ItemCheckEventArgs e)
+        private void CheckListBox1_ItemCheck(object? sender, ItemCheckEventArgs e)
         {
             if (inicializando) return;
 

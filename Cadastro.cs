@@ -10,20 +10,17 @@ namespace PetManager
         private DataRow? registroEditando = null;
         private DataTable? tabela = null;
 
-        // Construtor padrão (necessário para evitar erro CS1729)
         public Cadastro()
         {
             InitializeComponent();
         }
 
-        // Construtor para NOVO cadastro
         public Cadastro(DataTable tabelaRef)
         {
             InitializeComponent();
             tabela = tabelaRef;
         }
 
-        // Construtor para EDIÇÃO
         public Cadastro(DataRow row, DataTable tabelaRef)
         {
             InitializeComponent();
@@ -76,7 +73,6 @@ namespace PetManager
 
             if (registroEditando != null)
             {
-                // Atualiza os campos do registro EXISTENTE
                 registroEditando["Tipo"] = txtTipo.Text;
                 registroEditando["Nome"] = txtNome.Text;
                 registroEditando["Raça"] = txtRaca.Text;
@@ -94,7 +90,6 @@ namespace PetManager
             }
             else
             {
-                // NOVO cadastro: cria nova linha
                 var novaLinha = tabela.NewRow();
                 novaLinha["Tipo"] = txtTipo.Text;
                 novaLinha["Nome"] = txtNome.Text;
@@ -126,9 +121,6 @@ namespace PetManager
             {
                 pictureBox1.Image = Image.FromFile(ofd.FileName);
                 pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
-                // Se desejar salvar o caminho no DataRow, adicione um campo "Imagem" na tabela
-                // if (registroEditando != null)
-                //     registroEditando["Imagem"] = ofd.FileName;
             }
         }
     }
