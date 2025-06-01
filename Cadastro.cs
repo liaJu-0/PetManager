@@ -19,6 +19,44 @@ namespace PetManager
             InitializeComponent();
         }
 
+        public Cadastro(DataRow row)
+        {
+            InitializeComponent();
+
+            // Preenche os campos do formulário com os dados da linha fornecida
+            txtTipo.Text = row["Tipo"]?.ToString();
+            txtNome.Text = row["Nome"]?.ToString();
+            txtRaca.Text = row["Raça"]?.ToString();
+            txtCorPelo.Text = row["Cor"]?.ToString();
+            dateNscto.Value = DateTime.TryParse(row["Nascimento"]?.ToString(), out var nascimento) ? nascimento : DateTime.Today;
+            comboBoxCastrado.Text = row["Castrado"]?.ToString();
+            txtPeso.Text = row["Peso"]?.ToString();
+            txtTamanho.Text = row["Porte"]?.ToString();
+            txtVacinas.Text = row["Vacinas"]?.ToString();
+            txtObs.Text = row["Observações"]?.ToString();
+            dateEntrada.Value = DateTime.TryParse(row["DataEntrada"]?.ToString(), out var entrada) ? entrada : DateTime.Today;
+            dateSaida.Value = DateTime.TryParse(row["dataSaida"]?.ToString(), out var saida) ? saida : DateTime.Today;
+            txtResumo.Text = row["Resumo"]?.ToString();
+        }
+
+        public Cadastro(DataRow row, DataTable tabela)
+        {
+            InitializeComponent();
+            // Aqui você pode inicializar os campos do formulário com os valores da linha e tabela
+            txtNome.Text = row["Nome"].ToString();
+            txtTipo.Text = row["Tipo"].ToString();
+            txtRaca.Text = row["Raça"].ToString();
+            txtCorPelo.Text = row["Cor"].ToString();
+            dateNscto.Value = DateTime.TryParse(row["Nascimento"].ToString(), out var nascimento) ? nascimento : DateTime.Today;
+            txtPeso.Text = row["Peso"].ToString();
+            txtTamanho.Text = row["Porte"].ToString();
+            txtVacinas.Text = row["Vacinas"].ToString();
+            txtObs.Text = row["Observações"].ToString();
+            dateEntrada.Value = DateTime.TryParse(row["DataEntrada"].ToString(), out var entrada) ? entrada : DateTime.Today;
+            dateSaida.Value = DateTime.TryParse(row["dataSaida"].ToString(), out var saida) ? saida : DateTime.Today;
+            txtResumo.Text = row["Resumo"].ToString();
+        }
+
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
 

@@ -20,6 +20,7 @@ namespace PetManager
         {
             CarregarCsv();
             PopularFiltros();
+            // Não chame ExibirResultados aqui!
         }
 
         private void CarregarCsv()
@@ -32,7 +33,7 @@ namespace PetManager
             string[] colunas = {
                 "Tipo", "Nome", "Raça", "Nascimento", "Cor", "Pelagem",
                 "Castrado", "Peso", "Porte", "Vacinas",
-                "Observações", "DataEntrada", "Resumo"
+                "Observações", "DataEntrada", "dataSaida", "Resumo"
             };
 
             foreach (string coluna in colunas)
@@ -47,10 +48,14 @@ namespace PetManager
             using (var stream = new FileStream(caminho, FileMode.Open, FileAccess.Read, FileShare.Read))
             using (var reader = new StreamReader(stream))
             {
+                // pula o cabeçalho
+                if (!reader.EndOfStream)
+                    reader.ReadLine();
+
                 while (!reader.EndOfStream)
                 {
                     var linha = reader.ReadLine();
-                    if (linha != null) // Adiciona verificação para evitar desreferência nula
+                    if (linha != null)
                     {
                         var dados = linha.Split(';');
                         if (dados.Length >= colunas.Length)
@@ -83,6 +88,15 @@ namespace PetManager
 
             BoxFiltroTipo.SelectedIndex = 0;
             BoxFiltroPorte.SelectedIndex = 0;
+
+            // Preencha o CheckListBox1 se ainda não estiver preenchido
+            if (CheckListBox1.Items.Count == 0)
+            {
+                CheckListBox1.Items.Add("Todos");
+                CheckListBox1.Items.Add("Ativos");
+                CheckListBox1.Items.Add("Inativos");
+                CheckListBox1.SetItemChecked(0, true); // Seleciona "Todos" por padrão
+            }
         }
 
         private void AplicarFiltros()
@@ -94,24 +108,51 @@ namespace PetManager
             string tipoSelecionado = BoxFiltroTipo.Text;
             string porteSelecionado = BoxFiltroPorte.Text;
 
+            // Aqui está a adaptação para CheckListBox1:
             var selecionados = CheckListBox1.CheckedItems.Cast<string>().ToList();
+            bool filtrarTodos = selecionados.Contains("Todos") || selecionados.Count == 0; // Se nada marcado, assume "Todos"
+            bool filtrarAtivos = selecionados.Contains("Ativos");
+            bool filtrarInativos = selecionados.Contains("Inativos");
+
+            DateTime hoje = DateTime.Today;
 
             var resultado = tabela.AsEnumerable().Where(row =>
             {
                 string nome = row["Nome"]?.ToString()?.ToLower() ?? "";
                 string tipo = row["Tipo"]?.ToString() ?? "";
                 string porte = row["Porte"]?.ToString() ?? "";
+                string dataSaidaStr = row.Table.Columns.Contains("dataSaida") ? row["dataSaida"]?.ToString() : "";
+                DateTime dataSaida;
+                bool temDataSaida = DateTime.TryParse(dataSaidaStr, out dataSaida);
 
                 bool nomeMatch = nome.Contains(termo);
                 bool tipoMatch = tipoSelecionado == "Todos" || tipo == tipoSelecionado;
                 bool porteMatch = porteSelecionado == "Todos" || porte == porteSelecionado;
-                bool statusMatch = selecionados.Contains("Todos") || selecionados.Contains("Ativos");
+
+                bool statusMatch = true;
+                if (!filtrarTodos)
+                {
+                    if (filtrarAtivos && !filtrarInativos)
+                    {
+                        statusMatch = !temDataSaida || dataSaida > hoje;
+                    }
+                    else if (!filtrarAtivos && filtrarInativos)
+                    {
+                        statusMatch = temDataSaida && dataSaida <= hoje;
+                    }
+                    else if (filtrarAtivos && filtrarInativos)
+                    {
+                        // Mostra ambos, não filtra nada
+                        statusMatch = true;
+                    }
+                }
 
                 return nomeMatch && tipoMatch && porteMatch && statusMatch;
             });
 
             if (!resultado.Any())
             {
+                // Só mostra o pop-up se o usuário acionou o filtro (não no Load)
                 MessageBox.Show("Nenhum registro encontrado.");
                 panel1.Controls.Clear();
                 return;
@@ -132,8 +173,34 @@ namespace PetManager
                 lbl.AutoSize = true;
                 lbl.Location = new Point(10, y);
                 lbl.Font = new Font("Segoe UI", 9, FontStyle.Regular);
+                lbl.Cursor = Cursors.Hand;
+
+                // Evento para edição
+                lbl.Click += (s, e) => {
+                    Cadastro tela = new Cadastro(row, tabela);  // Passe a tabela para poder salvar depois
+                    tela.ShowDialog();
+                    // Após fechar o cadastro, salve o DataTable inteiro no CSV e recarregue
+                    SalvarTabelaNoCsv();
+                    CarregarCsv();
+                    PopularFiltros();
+                    // Não exibir pop-up aqui!
+                };
+
                 panel1.Controls.Add(lbl);
                 y += 25;
+            }
+        }
+
+        private void SalvarTabelaNoCsv()
+        {
+            string caminho = "registros.csv";
+            using (var writer = new StreamWriter(caminho, false))
+            {
+                writer.WriteLine(string.Join(";", tabela.Columns.Cast<DataColumn>().Select(c => c.ColumnName)));
+                foreach (DataRow row in tabela.Rows)
+                {
+                    writer.WriteLine(string.Join(";", row.ItemArray));
+                }
             }
         }
 
@@ -156,7 +223,17 @@ namespace PetManager
 
         private void BoxFiltroTipo_SelectedIndexChanged_1(object sender, EventArgs e)
         {
+            AplicarFiltros();
+        }
 
+        private void BoxFiltroPorte_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            AplicarFiltros();
+        }
+
+        private void CheckListBox1_ItemCheck(object sender, ItemCheckEventArgs e)
+        {
+            this.BeginInvoke((Action)(() => AplicarFiltros()));
         }
     }
 }
