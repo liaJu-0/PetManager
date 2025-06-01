@@ -10,20 +10,45 @@ namespace PetManager
     public partial class Registros : Form
     {
         private DataTable tabela = new DataTable();
-        private bool inicializando = false; // Flag de inicialização
+        private bool inicializando = false;
 
         public Registros()
         {
             InitializeComponent();
+
+            TxtPesquisa.GotFocus += TxtPesquisa_GotFocus;
+            TxtPesquisa.LostFocus += TxtPesquisa_LostFocus;
         }
 
         private void Registros_Load(object sender, EventArgs e)
         {
             inicializando = true;
+
+            TxtPesquisa.Text = "Pesquisa...";
+            TxtPesquisa.ForeColor = Color.Gray;
+
             CarregarCsv();
             PopularFiltros();
-            AplicarFiltros(mostrarAlerta: false); // Nunca alerta ao abrir
+            AplicarFiltros(mostrarAlerta: false);
             inicializando = false;
+        }
+
+        private void TxtPesquisa_GotFocus(object? sender, EventArgs e)
+        {
+            if (TxtPesquisa.Text == "Pesquisa...")
+            {
+                TxtPesquisa.Text = "";
+                TxtPesquisa.ForeColor = Color.Black;
+            }
+        }
+
+        private void TxtPesquisa_LostFocus(object? sender, EventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(TxtPesquisa.Text))
+            {
+                TxtPesquisa.Text = "Pesquisa...";
+                TxtPesquisa.ForeColor = Color.Gray;
+            }
         }
 
         private void CarregarCsv()
@@ -48,7 +73,6 @@ namespace PetManager
             using (var stream = new FileStream(caminho, FileMode.Open, FileAccess.Read, FileShare.Read))
             using (var reader = new StreamReader(stream))
             {
-                // pula o cabeçalho
                 if (!reader.EndOfStream)
                     reader.ReadLine();
 
@@ -89,13 +113,12 @@ namespace PetManager
             BoxFiltroTipo.SelectedIndex = 0;
             BoxFiltroPorte.SelectedIndex = 0;
 
-            // Preencha o CheckListBox1 se ainda não estiver preenchido
             if (CheckListBox1.Items.Count == 0)
             {
                 CheckListBox1.Items.Add("Todos");
                 CheckListBox1.Items.Add("Ativos");
                 CheckListBox1.Items.Add("Inativos");
-                CheckListBox1.SetItemChecked(0, true); // Seleciona "Todos" por padrão
+                CheckListBox1.SetItemChecked(0, true);
             }
         }
 
@@ -110,6 +133,8 @@ namespace PetManager
             }
 
             string termo = TxtPesquisa.Text.ToLower().Trim();
+            if (termo == "pesquisa...") termo = "";
+
             string tipoSelecionado = BoxFiltroTipo.Text;
             string porteSelecionado = BoxFiltroPorte.Text;
 
@@ -128,21 +153,22 @@ namespace PetManager
                 string? dataSaidaStr = row.Table.Columns.Contains("dataSaida") ? row["dataSaida"]?.ToString() : null;
                 DateTime dataSaida;
                 bool temDataSaida = DateTime.TryParse(dataSaidaStr, out dataSaida);
+                bool campoDataSaidaVazio = string.IsNullOrWhiteSpace(dataSaidaStr);
 
-                bool nomeMatch = nome.Contains(termo);
-                bool tipoMatch = tipoSelecionado == "Todos" || tipo == tipoSelecionado;
-                bool porteMatch = porteSelecionado == "Todos" || porte == porteSelecionado;
+                bool nomeMatch = filtrarTodos || nome.Contains(termo);
+                bool tipoMatch = filtrarTodos || tipoSelecionado == "Todos" || tipo == tipoSelecionado;
+                bool porteMatch = filtrarTodos || porteSelecionado == "Todos" || porte == porteSelecionado;
 
                 bool statusMatch = true;
                 if (!filtrarTodos)
                 {
                     if (filtrarAtivos && !filtrarInativos)
                     {
-                        statusMatch = !temDataSaida || dataSaida > hoje;
+                        statusMatch = campoDataSaidaVazio || (temDataSaida && dataSaida >= hoje);
                     }
                     else if (!filtrarAtivos && filtrarInativos)
                     {
-                        statusMatch = temDataSaida && dataSaida <= hoje;
+                        statusMatch = !campoDataSaidaVazio && temDataSaida && dataSaida < hoje;
                     }
                     else if (filtrarAtivos && filtrarInativos)
                     {
@@ -185,16 +211,14 @@ namespace PetManager
                 lbl.Font = new Font("Segoe UI", 9, FontStyle.Regular);
                 lbl.Cursor = Cursors.Hand;
 
-                // Evento para edição
                 lbl.Click += (s, e) => {
-                    Cadastro tela = new Cadastro(row, tabela);  // Passe a tabela para poder salvar depois
+                    Cadastro tela = new Cadastro(row, tabela);
                     if (tela.ShowDialog() == DialogResult.OK)
                     {
                         SalvarTabelaNoCsv();
                         CarregarCsv();
                         PopularFiltros();
-                        AplicarFiltros(mostrarAlerta: false); // Atualiza sem alerta
-                    }
+                        AplicarFiltros(mostrarAlerta: false);                    }
                 };
 
                 panel1.Controls.Add(lbl);
@@ -247,8 +271,18 @@ namespace PetManager
 
         private void CheckListBox1_ItemCheck(object sender, ItemCheckEventArgs e)
         {
-            if (!inicializando)
-                this.BeginInvoke((Action)(() => AplicarFiltros(mostrarAlerta: true)));
+            if (inicializando) return;
+
+            if (e.Index == 0 && e.NewValue == CheckState.Checked)
+            {
+                for (int i = 1; i < CheckListBox1.Items.Count; i++)
+                    CheckListBox1.SetItemChecked(i, false);
+            }
+            if (e.Index > 0 && e.NewValue == CheckState.Checked)
+            {
+                CheckListBox1.SetItemChecked(0, false);
+            }
+            this.BeginInvoke((Action)(() => AplicarFiltros(mostrarAlerta: true)));
         }
     }
 }
