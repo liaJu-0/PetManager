@@ -11,6 +11,11 @@
         {
 
         }
+        private void Cadastro_Load(object sender, EventArgs e)
+        {
+            // Implementação inicial do evento de carregamento do formulário
+            MessageBox.Show("Formulário carregado com sucesso!");
+        }
         /// <summary>
         /// Required designer variable.
         /// </summary>
@@ -226,7 +231,7 @@
             label5.Size = new Size(52, 20);
             label5.TabIndex = 21;
             label5.Text = "Nome";
-            label5.Click += label5_Click;
+            //label5.Click += label5_Click;
             // 
             // label6
             // 
@@ -346,7 +351,7 @@
             txtTamanho.Name = "txtTamanho";
             txtTamanho.Size = new Size(90, 28);
             txtTamanho.TabIndex = 33;
-            txtTamanho.SelectedIndexChanged += txtTamanho_SelectedIndexChanged;
+            //txtTamanho.SelectedIndexChanged += txtTamanho_SelectedIndexChanged;
             // 
             // txtPeso
             // 
@@ -367,9 +372,9 @@
             pictureBox2.SizeMode = PictureBoxSizeMode.StretchImage;
             pictureBox2.TabIndex = 34;
             pictureBox2.TabStop = false;
-            pictureBox2.Click += pictureBox2_Click;
-            pictureBox2.MouseEnter += pictureBox2_MouseEnter;
-            pictureBox2.MouseLeave += pictureBox2_MouseLeave;
+            //pictureBox2.Click += pictureBox2_Click;
+            //pictureBox2.MouseEnter += pictureBox2_MouseEnter;
+            //pictureBox2.MouseLeave += pictureBox2_MouseLeave;
             // 
             // label17
             // 

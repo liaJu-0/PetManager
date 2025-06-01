@@ -1,148 +1,119 @@
 ﻿using System;
-using System.IO;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using Microsoft.Win32;
 
 namespace PetManager
 {
     public partial class Cadastro : Form
     {
+        private DataRow? registroEditando = null;
+        private DataTable? tabela = null;
+
+        // Construtor padrão (necessário para evitar erro CS1729)
         public Cadastro()
         {
             InitializeComponent();
         }
 
-        public Cadastro(DataRow row)
+        // Construtor para NOVO cadastro
+        public Cadastro(DataTable tabelaRef)
         {
             InitializeComponent();
-
-            // Preenche os campos do formulário com os dados da linha fornecida
-            txtTipo.Text = row["Tipo"]?.ToString();
-            txtNome.Text = row["Nome"]?.ToString();
-            txtRaca.Text = row["Raça"]?.ToString();
-            txtCorPelo.Text = row["Cor"]?.ToString();
-            dateNscto.Value = DateTime.TryParse(row["Nascimento"]?.ToString(), out var nascimento) ? nascimento : DateTime.Today;
-            comboBoxCastrado.Text = row["Castrado"]?.ToString();
-            txtPeso.Text = row["Peso"]?.ToString();
-            txtTamanho.Text = row["Porte"]?.ToString();
-            txtVacinas.Text = row["Vacinas"]?.ToString();
-            txtObs.Text = row["Observações"]?.ToString();
-            dateEntrada.Value = DateTime.TryParse(row["DataEntrada"]?.ToString(), out var entrada) ? entrada : DateTime.Today;
-            dateSaida.Value = DateTime.TryParse(row["dataSaida"]?.ToString(), out var saida) ? saida : DateTime.Today;
-            txtResumo.Text = row["Resumo"]?.ToString();
+            tabela = tabelaRef;
         }
 
-        public Cadastro(DataRow row, DataTable tabela)
+        // Construtor para EDIÇÃO
+        public Cadastro(DataRow row, DataTable tabelaRef)
         {
             InitializeComponent();
-            // Aqui você pode inicializar os campos do formulário com os valores da linha e tabela
-            txtNome.Text = row["Nome"].ToString();
-            txtTipo.Text = row["Tipo"].ToString();
-            txtRaca.Text = row["Raça"].ToString();
-            txtCorPelo.Text = row["Cor"].ToString();
-            dateNscto.Value = DateTime.TryParse(row["Nascimento"].ToString(), out var nascimento) ? nascimento : DateTime.Today;
-            txtPeso.Text = row["Peso"].ToString();
-            txtTamanho.Text = row["Porte"].ToString();
-            txtVacinas.Text = row["Vacinas"].ToString();
-            txtObs.Text = row["Observações"].ToString();
-            dateEntrada.Value = DateTime.TryParse(row["DataEntrada"].ToString(), out var entrada) ? entrada : DateTime.Today;
-            dateSaida.Value = DateTime.TryParse(row["dataSaida"].ToString(), out var saida) ? saida : DateTime.Today;
-            txtResumo.Text = row["Resumo"].ToString();
+            registroEditando = row;
+            tabela = tabelaRef;
+            PreencherCampos();
         }
 
-        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        private void PreencherCampos()
         {
+            if (registroEditando == null) return;
+            txtTipo.Text = registroEditando["Tipo"].ToString();
+            txtNome.Text = registroEditando["Nome"].ToString();
+            txtRaca.Text = registroEditando["Raça"].ToString();
 
-        }
+            DateTime dt;
+            if (DateTime.TryParse(registroEditando["Nascimento"].ToString(), out dt))
+                dateNscto.Value = dt;
+            else
+                dateNscto.Value = DateTime.Today;
 
-        private void label2_Click(object sender, EventArgs e)
-        {
+            txtCorPelo.Text = registroEditando["Cor"].ToString();
+            txtTamPelo.Text = registroEditando["Pelagem"].ToString();
+            comboBoxCastrado.Text = registroEditando["Castrado"].ToString();
+            txtPeso.Text = registroEditando["Peso"].ToString();
+            txtTamanho.Text = registroEditando["Porte"].ToString();
+            txtVacinas.Text = registroEditando["Vacinas"].ToString();
+            txtObs.Text = registroEditando["Observações"].ToString();
 
-        }
+            if (DateTime.TryParse(registroEditando["DataEntrada"].ToString(), out dt))
+                dateEntrada.Value = dt;
+            else
+                dateEntrada.Value = DateTime.Today;
 
-        private void label3_Click(object sender, EventArgs e)
-        {
+            if (DateTime.TryParse(registroEditando["dataSaida"].ToString(), out dt))
+                dateSaida.Value = dt;
+            else
+                dateSaida.Value = DateTime.Today;
 
-        }
-
-        private void label5_Click(object sender, EventArgs e)
-        {
-
+            txtResumo.Text = registroEditando["Resumo"].ToString();
         }
 
         private void btnSalvar_Click(object sender, EventArgs e)
         {
-            string tipo = txtTipo.Text;
-            string nome = txtNome.Text;
-            string raca = txtRaca.Text;
-            string nascimento = dateNscto.Value.ToShortDateString();
-            string corPelagem = txtCorPelo.Text;
-            string tamPelagem = txtTamPelo.Text;
-            string castrado = comboBoxCastrado.Text;
-            string peso = txtPeso.Text;
-            string porte = txtTamanho.Text;
-            string vacinas = txtVacinas.Text;
-            string observacoes = txtObs.Text;
-            string dataEntrada = dateEntrada.Value.ToShortDateString();
-            string resumo = txtResumo.Text;
-            string dataSaida = dateSaida.Value.ToShortDateString();
-
-            string linha = $"{tipo};{nome};{raca};{nascimento};{corPelagem};{tamPelagem};{castrado};{peso};{porte};{vacinas};{observacoes};{dataEntrada};{dataSaida};{resumo}";
-
-            string caminho = "registros.csv";
-
-            try
+            if (tabela == null)
             {
-                if (!File.Exists(caminho))
-                {
-                    File.AppendAllText(caminho, "Tipo;Nome;Raça;Nascimento;Cor;Pelagem;Castrado;Peso;Porte;Vacinas;Observações;DataEntrada;dataSaida;Resumo\n");
-                }
-
-                File.AppendAllText(caminho, linha + "\n");
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Erro ao salvar: " + ex.Message);
+                MessageBox.Show("Tabela de dados não está disponível!");
                 return;
             }
 
-            DialogResult resultado = MessageBox.Show(
-                "Cadastro salvo com sucesso!\n\nDeseja visualizar os registros?",
-                "Confirmação",
-                MessageBoxButtons.YesNo,
-                MessageBoxIcon.Information
-            );
-
-            if (resultado == DialogResult.Yes)
+            if (registroEditando != null)
             {
-                Registros telaRegistros = new Registros();
-                telaRegistros.Show();
+                // Atualiza os campos do registro EXISTENTE
+                registroEditando["Tipo"] = txtTipo.Text;
+                registroEditando["Nome"] = txtNome.Text;
+                registroEditando["Raça"] = txtRaca.Text;
+                registroEditando["Nascimento"] = dateNscto.Value.ToShortDateString();
+                registroEditando["Cor"] = txtCorPelo.Text;
+                registroEditando["Pelagem"] = txtTamPelo.Text;
+                registroEditando["Castrado"] = comboBoxCastrado.Text;
+                registroEditando["Peso"] = txtPeso.Text;
+                registroEditando["Porte"] = txtTamanho.Text;
+                registroEditando["Vacinas"] = txtVacinas.Text;
+                registroEditando["Observações"] = txtObs.Text;
+                registroEditando["DataEntrada"] = dateEntrada.Value.ToShortDateString();
+                registroEditando["dataSaida"] = dateSaida.Value.ToShortDateString();
+                registroEditando["Resumo"] = txtResumo.Text;
             }
             else
             {
-                TelaInicial telaInicial = new TelaInicial();
-                telaInicial.Show();
+                // NOVO cadastro: cria nova linha
+                var novaLinha = tabela.NewRow();
+                novaLinha["Tipo"] = txtTipo.Text;
+                novaLinha["Nome"] = txtNome.Text;
+                novaLinha["Raça"] = txtRaca.Text;
+                novaLinha["Nascimento"] = dateNscto.Value.ToShortDateString();
+                novaLinha["Cor"] = txtCorPelo.Text;
+                novaLinha["Pelagem"] = txtTamPelo.Text;
+                novaLinha["Castrado"] = comboBoxCastrado.Text;
+                novaLinha["Peso"] = txtPeso.Text;
+                novaLinha["Porte"] = txtTamanho.Text;
+                novaLinha["Vacinas"] = txtVacinas.Text;
+                novaLinha["Observações"] = txtObs.Text;
+                novaLinha["DataEntrada"] = dateEntrada.Value.ToShortDateString();
+                novaLinha["dataSaida"] = dateSaida.Value.ToShortDateString();
+                novaLinha["Resumo"] = txtResumo.Text;
+                tabela.Rows.Add(novaLinha);
             }
-
+            this.DialogResult = DialogResult.OK;
             this.Close();
-        }
-
-
-        private void Cadastro_Load(object sender, EventArgs e)
-        {
-
-        }
-
-        private void txtTamanho_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
         }
 
         private void btnUpload_Click(object sender, EventArgs e)
@@ -154,27 +125,11 @@ namespace PetManager
             if (ofd.ShowDialog() == DialogResult.OK)
             {
                 pictureBox1.Image = Image.FromFile(ofd.FileName);
-                pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage; // ou Zoom, se quiser manter a proporção
+                pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
+                // Se desejar salvar o caminho no DataRow, adicione um campo "Imagem" na tabela
+                // if (registroEditando != null)
+                //     registroEditando["Imagem"] = ofd.FileName;
             }
-        }
-
-        private void pictureBox2_Click(object sender, EventArgs e)
-        {
-            this.Hide(); // Esconde a tela atual
-            TelaInicial telaInicial = new TelaInicial();
-            telaInicial.Show(); // Abre a tela inicial
-        }
-
-        private void pictureBox2_MouseEnter(object sender, EventArgs e)
-        {
-            pictureBox2.Cursor = Cursors.Hand; // Muda o cursor pra mãozinha
-            pictureBox2.BackColor = Color.LightGray; // Opcional: destaca o fundo
-        }
-
-        private void pictureBox2_MouseLeave(object sender, EventArgs e)
-        {
-            pictureBox2.Cursor = Cursors.Default; // Volta pro cursor padrão
-            pictureBox2.BackColor = Color.Transparent; // Remove o destaque
         }
     }
 }

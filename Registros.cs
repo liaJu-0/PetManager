@@ -20,7 +20,8 @@ namespace PetManager
         {
             CarregarCsv();
             PopularFiltros();
-            // Não chame ExibirResultados aqui!
+            // Exibe todos os registros ao abrir, sem pop-up se vazio:
+            ExibirTodosSemAlerta();
         }
 
         private void CarregarCsv()
@@ -41,7 +42,7 @@ namespace PetManager
 
             if (!File.Exists(caminho))
             {
-                MessageBox.Show("Nenhum registro salvo ainda.");
+                // Não mostrar pop-up aqui
                 return;
             }
 
@@ -99,6 +100,16 @@ namespace PetManager
             }
         }
 
+        private void ExibirTodosSemAlerta()
+        {
+            if (tabela == null || tabela.Rows.Count == 0)
+            {
+                panel1.Controls.Clear();
+                return;
+            }
+            ExibirResultados(tabela, mostrarAlerta: false);
+        }
+
         private void AplicarFiltros()
         {
             if (tabela == null || tabela.Rows.Count == 0)
@@ -108,9 +119,8 @@ namespace PetManager
             string tipoSelecionado = BoxFiltroTipo.Text;
             string porteSelecionado = BoxFiltroPorte.Text;
 
-            // Aqui está a adaptação para CheckListBox1:
             var selecionados = CheckListBox1.CheckedItems.Cast<string>().ToList();
-            bool filtrarTodos = selecionados.Contains("Todos") || selecionados.Count == 0; // Se nada marcado, assume "Todos"
+            bool filtrarTodos = selecionados.Contains("Todos") || selecionados.Count == 0;
             bool filtrarAtivos = selecionados.Contains("Ativos");
             bool filtrarInativos = selecionados.Contains("Inativos");
 
@@ -121,7 +131,7 @@ namespace PetManager
                 string nome = row["Nome"]?.ToString()?.ToLower() ?? "";
                 string tipo = row["Tipo"]?.ToString() ?? "";
                 string porte = row["Porte"]?.ToString() ?? "";
-                string dataSaidaStr = row.Table.Columns.Contains("dataSaida") ? row["dataSaida"]?.ToString() : "";
+                string? dataSaidaStr = row.Table.Columns.Contains("dataSaida") ? row["dataSaida"]?.ToString() : null;
                 DateTime dataSaida;
                 bool temDataSaida = DateTime.TryParse(dataSaidaStr, out dataSaida);
 
@@ -142,7 +152,6 @@ namespace PetManager
                     }
                     else if (filtrarAtivos && filtrarInativos)
                     {
-                        // Mostra ambos, não filtra nada
                         statusMatch = true;
                     }
                 }
@@ -152,18 +161,25 @@ namespace PetManager
 
             if (!resultado.Any())
             {
-                // Só mostra o pop-up se o usuário acionou o filtro (não no Load)
+                // Aqui sim, mostra o pop-up se não encontrar
                 MessageBox.Show("Nenhum registro encontrado.");
                 panel1.Controls.Clear();
                 return;
             }
 
-            ExibirResultados(resultado.CopyToDataTable());
+            ExibirResultados(resultado.CopyToDataTable(), mostrarAlerta: false);
         }
 
-        private void ExibirResultados(DataTable dados)
+        private void ExibirResultados(DataTable dados, bool mostrarAlerta = true)
         {
             panel1.Controls.Clear();
+
+            if (dados == null || dados.Rows.Count == 0)
+            {
+                if (mostrarAlerta)
+                    MessageBox.Show("Nenhum registro encontrado.");
+                return;
+            }
 
             int y = 10;
             foreach (DataRow row in dados.Rows)
@@ -178,12 +194,13 @@ namespace PetManager
                 // Evento para edição
                 lbl.Click += (s, e) => {
                     Cadastro tela = new Cadastro(row, tabela);  // Passe a tabela para poder salvar depois
-                    tela.ShowDialog();
-                    // Após fechar o cadastro, salve o DataTable inteiro no CSV e recarregue
-                    SalvarTabelaNoCsv();
-                    CarregarCsv();
-                    PopularFiltros();
-                    // Não exibir pop-up aqui!
+                    if (tela.ShowDialog() == DialogResult.OK)
+                    {
+                        SalvarTabelaNoCsv();
+                        CarregarCsv();
+                        PopularFiltros();
+                        ExibirTodosSemAlerta();
+                    }
                 };
 
                 panel1.Controls.Add(lbl);

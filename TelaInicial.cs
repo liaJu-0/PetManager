@@ -1,20 +1,20 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.IO;
 using System.Windows.Forms;
 
 namespace PetManager
 {
     public partial class TelaInicial : Form
     {
+        // Tabela central dos registros de pets
+        private DataTable tabela = null!;
+
         public TelaInicial()
         {
             InitializeComponent();
+            CarregarTabelaPrincipal();
         }
 
         private void TelaInicial_Load(object sender, EventArgs e)
@@ -22,10 +22,62 @@ namespace PetManager
 
         }
 
+        private void CarregarTabelaPrincipal()
+        {
+            tabela = new DataTable();
+            string[] colunas = {
+                "Tipo", "Nome", "Raça", "Nascimento", "Cor", "Pelagem",
+                "Castrado", "Peso", "Porte", "Vacinas",
+                "Observações", "DataEntrada", "dataSaida", "Resumo"
+            };
+            foreach (string coluna in colunas)
+                tabela.Columns.Add(coluna);
+
+            string caminho = "registros.csv";
+            if (!File.Exists(caminho))
+                return;
+
+            using (var reader = new StreamReader(caminho))
+            {
+                // Pula o cabeçalho
+                if (!reader.EndOfStream)
+                    reader.ReadLine();
+
+                while (!reader.EndOfStream)
+                {
+                    var linha = reader.ReadLine();
+                    if (linha != null)
+                    {
+                        var dados = linha.Split(';');
+                        if (dados.Length >= colunas.Length)
+                            tabela.Rows.Add(dados);
+                    }
+                }
+            }
+        }
+
         private void btnNovo_Click(object sender, EventArgs e)
         {
-            Cadastro telaCadastro = new Cadastro();
-            telaCadastro.Show();
+            // Passa a tabela REAL do sistema para Cadastro
+            Cadastro telaCadastro = new Cadastro(tabela);
+            if (telaCadastro.ShowDialog() == DialogResult.OK)
+            {
+                // Ao fechar, salve a tabela no CSV
+                SalvarTabelaNoCsv();
+            }
+        }
+
+        private void SalvarTabelaNoCsv()
+        {
+            string caminho = "registros.csv";
+            using (var writer = new StreamWriter(caminho, false))
+            {
+                writer.WriteLine(string.Join(";", tabela.Columns.Cast<DataColumn>().Select(c => c.ColumnName)));
+                foreach (DataRow row in tabela.Rows)
+                {
+                    writer.WriteLine(string.Join(";", row.ItemArray));
+                }
+            }
         }
 
         private void btnRegistros_Click(object sender, EventArgs e)
@@ -36,21 +88,21 @@ namespace PetManager
 
         private void pictureBox1_Click(object sender, EventArgs e)
         {
-            this.Hide(); // Esconde a tela atual
+            this.Hide();
             Login Form1 = new Login();
-            Form1.Show(); // Abre a tela de Login
+            Form1.Show();
         }
 
         private void pictureBox3_MouseEnter(object sender, EventArgs e)
         {
-            pictureBox3.Cursor = Cursors.Hand; // Muda o cursor pra mãozinha
-            pictureBox3.BackColor = Color.LightGray; // Opcional: destaca o fundo
+            pictureBox3.Cursor = Cursors.Hand;
+            pictureBox3.BackColor = Color.LightGray;
         }
 
         private void pictureBox3_MouseLeave(object sender, EventArgs e)
         {
-            pictureBox3.Cursor = Cursors.Default; // Volta pro cursor padrão
-            pictureBox3.BackColor = Color.Transparent; // Remove o destaqu
+            pictureBox3.Cursor = Cursors.Default;
+            pictureBox3.BackColor = Color.Transparent;
         }
     }
 }
