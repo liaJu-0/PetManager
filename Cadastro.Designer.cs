@@ -64,6 +64,8 @@
             txtResumo = new TextBox();
             txtTamPelo = new ComboBox();
             txtTipo = new ComboBox();
+            txtStatus = new ComboBox();
+            label18 = new Label();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
@@ -72,7 +74,7 @@
             pictureBox1.Image = Properties.Resources.transferir1;
             pictureBox1.Location = new Point(595, 404);
             pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(132, 130);
+            pictureBox1.Size = new Size(170, 173);
             pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
             pictureBox1.TabIndex = 0;
             pictureBox1.TabStop = false;
@@ -157,10 +159,12 @@
             // 
             // txtObs
             // 
-            txtObs.Location = new Point(231, 496);
+            txtObs.Location = new Point(231, 512);
+            txtObs.MaximumSize = new Size(279, 123);
+            txtObs.MinimumSize = new Size(279, 123);
             txtObs.Multiline = true;
             txtObs.Name = "txtObs";
-            txtObs.Size = new Size(279, 73);
+            txtObs.Size = new Size(279, 123);
             txtObs.TabIndex = 15;
             // 
             // dateEntrada
@@ -172,7 +176,7 @@
             // 
             // btnUpload
             // 
-            btnUpload.Location = new Point(595, 545);
+            btnUpload.Location = new Point(595, 611);
             btnUpload.Name = "btnUpload";
             btnUpload.Size = new Size(132, 24);
             btnUpload.TabIndex = 18;
@@ -182,7 +186,7 @@
             // 
             // btnSalvar
             // 
-            btnSalvar.Location = new Point(759, 545);
+            btnSalvar.Location = new Point(791, 608);
             btnSalvar.Name = "btnSalvar";
             btnSalvar.Size = new Size(132, 24);
             btnSalvar.TabIndex = 19;
@@ -294,7 +298,7 @@
             // 
             label14.AutoSize = true;
             label14.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label14.Location = new Point(231, 472);
+            label14.Location = new Point(231, 478);
             label14.Name = "label14";
             label14.Size = new Size(98, 20);
             label14.TabIndex = 30;
@@ -379,6 +383,26 @@
             txtTipo.Size = new Size(106, 28);
             txtTipo.TabIndex = 38;
             // 
+            // txtStatus
+            // 
+            txtStatus.FormattingEnabled = true;
+            txtStatus.Items.AddRange(new object[] { "Ativo", "Inativo" });
+            txtStatus.Location = new Point(107, 607);
+            txtStatus.Name = "txtStatus";
+            txtStatus.Size = new Size(90, 28);
+            txtStatus.TabIndex = 39;
+            txtStatus.SelectedIndexChanged += txtStatus_SelectedIndexChanged;
+            // 
+            // label18
+            // 
+            label18.AutoSize = true;
+            label18.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label18.Location = new Point(107, 579);
+            label18.Name = "label18";
+            label18.Size = new Size(53, 20);
+            label18.TabIndex = 40;
+            label18.Text = "Status";
+            // 
             // Cadastro
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -387,6 +411,8 @@
             BackgroundImage = Properties.Resources.Pet_Manager2;
             BackgroundImageLayout = ImageLayout.Stretch;
             ClientSize = new Size(1006, 661);
+            Controls.Add(label18);
+            Controls.Add(txtStatus);
             Controls.Add(txtTipo);
             Controls.Add(txtTamPelo);
             Controls.Add(label17);
@@ -468,5 +494,7 @@
         private TextBox txtResumo;
         private ComboBox txtTamPelo;
         private ComboBox txtTipo;
+        private ComboBox txtStatus;
+        private Label label18;
     }
 }

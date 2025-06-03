@@ -61,6 +61,8 @@ namespace PetManager
                 dateSaida.Value = DateTime.Today;
 
             txtResumo.Text = registroEditando["Resumo"].ToString();
+            txtStatus.Text = registroEditando["Status"].ToString();
+
         }
 
         private void btnSalvar_Click(object sender, EventArgs e)
@@ -87,6 +89,8 @@ namespace PetManager
                 registroEditando["DataEntrada"] = dateEntrada.Value.ToShortDateString();
                 registroEditando["dataSaida"] = dateSaida.Value.ToShortDateString();
                 registroEditando["Resumo"] = txtResumo.Text;
+                registroEditando["Status"] = txtStatus.Text;
+
             }
             else
             {
@@ -105,6 +109,8 @@ namespace PetManager
                 novaLinha["DataEntrada"] = dateEntrada.Value.ToShortDateString();
                 novaLinha["dataSaida"] = dateSaida.Value.ToShortDateString();
                 novaLinha["Resumo"] = txtResumo.Text;
+                novaLinha["Status"] = txtStatus.Text;
+
                 tabela.Rows.Add(novaLinha);
             }
             this.DialogResult = DialogResult.OK;
@@ -124,5 +130,9 @@ namespace PetManager
             }
         }
 
+        private void txtStatus_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

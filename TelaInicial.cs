@@ -27,7 +27,7 @@ namespace PetManager
             string[] colunas = {
                 "Tipo", "Nome", "Raça", "Nascimento", "Cor", "Pelagem",
                 "Castrado", "Peso", "Porte", "Vacinas",
-                "Observações", "DataEntrada", "dataSaida", "Resumo"
+                "Observações", "DataEntrada", "dataSaida", "Resumo", "Status"
             };
             foreach (string coluna in colunas)
                 tabela.Columns.Add(coluna);

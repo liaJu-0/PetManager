@@ -65,7 +65,7 @@ namespace PetManager
             string[] colunas = {
                 "Tipo", "Nome", "Raça", "Nascimento", "Cor", "Pelagem",
                 "Castrado", "Peso", "Porte", "Vacinas",
-                "Observações", "DataEntrada", "dataSaida", "Resumo"
+                "Observações", "DataEntrada", "dataSaida", "Resumo", "Status" // adiciona Status aqui
             };
 
             foreach (string coluna in colunas)
@@ -78,7 +78,7 @@ namespace PetManager
             using (var reader = new StreamReader(stream))
             {
                 if (!reader.EndOfStream)
-                    reader.ReadLine();
+                    reader.ReadLine(); // pula cabeçalho
 
                 while (!reader.EndOfStream)
                 {
@@ -86,8 +86,23 @@ namespace PetManager
                     if (linha != null)
                     {
                         var dados = linha.Split(';');
-                        if (dados.Length >= colunas.Length)
-                            tabela.Rows.Add(dados.Take(colunas.Length).ToArray());
+                        if (dados.Length == colunas.Length - 1)
+                        {
+                            // CSV antigo sem coluna Status, adiciona "Ativo"
+                            var novaLinha = new string[colunas.Length];
+                            for (int i = 0; i < dados.Length; i++)
+                                novaLinha[i] = dados[i];
+                            novaLinha[colunas.Length - 1] = "Ativo";
+                            tabela.Rows.Add(novaLinha);
+                        }
+                        else if (dados.Length == colunas.Length)
+                        {
+                            tabela.Rows.Add(dados);
+                        }
+                        else
+                        {
+                            // linha inconsistente, pode ignorar ou tratar se quiser
+                        }
                     }
                 }
             }
@@ -140,17 +155,12 @@ namespace PetManager
             bool filtrarAtivos = selecionados.Contains("Ativos");
             bool filtrarInativos = selecionados.Contains("Inativos");
 
-            DateTime hoje = DateTime.Today;
-
             var resultado = tabela.AsEnumerable().Where(row =>
             {
                 string nome = row["Nome"]?.ToString()?.ToLower() ?? "";
                 string tipo = row["Tipo"]?.ToString() ?? "";
                 string porte = row["Porte"]?.ToString() ?? "";
-                string? dataSaidaStr = row.Table.Columns.Contains("dataSaida") ? row["dataSaida"]?.ToString() : null;
-                DateTime dataSaida;
-                bool temDataSaida = DateTime.TryParse(dataSaidaStr, out dataSaida);
-                bool campoDataSaidaVazio = string.IsNullOrWhiteSpace(dataSaidaStr);
+                string status = row["Status"]?.ToString() ?? "";
 
                 bool nomeMatch = filtrarTodos || nome.Contains(termo);
                 bool tipoMatch = filtrarTodos || tipoSelecionado == "Todos" || tipo == tipoSelecionado;
@@ -160,9 +170,9 @@ namespace PetManager
                 if (!filtrarTodos)
                 {
                     if (filtrarAtivos && !filtrarInativos)
-                        statusMatch = campoDataSaidaVazio || (temDataSaida && dataSaida >= hoje);
+                        statusMatch = status.Equals("Ativo", StringComparison.OrdinalIgnoreCase);
                     else if (!filtrarAtivos && filtrarInativos)
-                        statusMatch = !campoDataSaidaVazio && temDataSaida && dataSaida < hoje;
+                        statusMatch = status.Equals("Inativo", StringComparison.OrdinalIgnoreCase);
                     else if (filtrarAtivos && filtrarInativos)
                         statusMatch = true;
                 }
